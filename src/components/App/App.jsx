@@ -2,11 +2,15 @@ import "../../styles/App.css";
 
 function App() {
   return (
-    <h1 className="">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in maxime
-      sit nam deleniti fuga quibusdam, modi, vero ad mollitia explicabo tempore
-      nesciunt iure quae? Laboriosam porro vel iure vitae.
-    </h1>
+    <>
+      <a href="">Hey</a>
+      <h1>AM H1</h1>
+      <p>AM P</p>
+      <button className="btn btn-primary">Am Button</button>
+      <button className="btn btn-primary-w">Am Button</button>
+      <button className="btn btn-accent">Am Button</button>
+      <button className="btn btn-accent-w">Am Button</button>
+    </>
   );
 }
 
