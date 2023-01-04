@@ -1,10 +1,9 @@
 ## Folder Structure
 
 - /
-  -- src
-  --- assets
-  --- components
-  --- utils
-  --- reducers
-  --- styles
-  ---- globals.css
+  - src
+    - assets (All static items. eg. Photos, Logos,etc...)
+    - components (App components here)
+    - utils (for third party libraries)
+    - reducers (useReducer API)
+    - styles (css)
