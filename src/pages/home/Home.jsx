@@ -1,14 +1,14 @@
 import Features from "../../components/Home/Features";
+import Footer from "../../components/Home/Footer";
 import Header from "../../components/Home/Header";
 import Navbar from "../../components/Home/Navbar";
 
 const Home = () => {
   return (
-    <main className="w-full min-h-screen bg-white">
+    <main className="w-full min-h-screen bg-white flex-col">
       <section className="w-full h-screen bg-gradient-to-b from-brown to-addon relative f-col">
         <Navbar />
         <Header />
-        <Features />
         <div class="fill-white absolute bottom-0 left-0 w-full overflow-hidden ">
           <svg
             className="relative block w-full h-28 "
@@ -22,6 +22,8 @@ const Home = () => {
             ></path>
           </svg>
         </div>
+        <Features />
+        <Footer />
       </section>
     </main>
   );
