@@ -1,5 +1,5 @@
 import "../../styles/App.css";
-import { RouterProvider, Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "../../pages/home/Home";
 import Register from "../../pages/register/Register";
 import Login from "../../pages/login/Login";
@@ -14,34 +14,103 @@ import Profile from "../../pages/profile/Profile";
 import NotFound from "../../pages/404/NotFound";
 
 function App() {
+  const user = false;
+
+  const RequireAuth = ({ children, navTo = "/register" }) => {
+    return user ? children : <Navigate to={navTo} />;
+  };
+
   return (
     <Routes>
       <Route path="/">
+        {/* ---- Public Routes */}
+
         <Route index element={<Home />} />
 
         <Route path="register" element={<Register />} />
 
         <Route path="login" element={<Login />} />
 
-        <Route path="dashboard" element={<Dashboard />} />
+        {/* ---- Protected Routes ---- */}
 
-        <Route path="profile" element={<Profile />} />
+        <Route
+          path="profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
+
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        />
 
         <Route path="invoices">
-          <Route index element={<Invoices />} />
-          <Route path="new" element={<NewInvoice />} />
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Invoices />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="new"
+            element={
+              <RequireAuth>
+                <NewInvoice />
+              </RequireAuth>
+            }
+          />
         </Route>
 
         <Route path="customers">
-          <Route index element={<Customers />} />
-          <Route path="new" element={<NewCustomer />} />
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Customers />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="new"
+            element={
+              <RequireAuth>
+                <NewCustomer />
+              </RequireAuth>
+            }
+          />
         </Route>
 
         <Route path="products">
-          <Route index element={<Products />} />
-          <Route path="new" element={<NewProduct />} />
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Products />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="new"
+            element={
+              <RequireAuth>
+                <NewProduct />
+              </RequireAuth>
+            }
+          />
         </Route>
       </Route>
+
+      {/* ---- 404 ---- */}
+
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   );
