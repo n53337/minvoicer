@@ -33,7 +33,6 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
@@ -96,7 +95,7 @@ body {
 /* Components Classes */
 @layer components {
   .btn {
-    @apply py-2.5 px-5 rounded-lg cursor-pointer font-semibold text-xs lg:text-base;
+    @apply py-2.5 px-5 rounded-lg cursor-pointer font-semibold text-xs lg:text-base hover:brightness-90 hover:delay-75;
   }
 
   .btn-primary {
@@ -118,6 +117,10 @@ body {
 
 /* Utils */
 @layer utilities {
+  .f-col {
+    @apply flex flex-col;
+  }
+
   .f-center {
     @apply flex justify-center items-center;
   }
