@@ -33,7 +33,6 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
@@ -85,18 +84,22 @@ body {
   }
 
   h1 {
-    @apply font-medium text-xl lg:text-3xl;
+    @apply font-medium text-2xl lg:text-5xl leading-normal;
+  }
+
+  h2 {
+    @apply font-medium text-xl lg:text-4xl leading-snug;
   }
 
   p {
-    @apply font-normal text-sm lg:text-base;
+    @apply font-normal text-xs lg:text-base;
   }
 }
 
 /* Components Classes */
 @layer components {
   .btn {
-    @apply py-2.5 px-5 rounded-lg cursor-pointer font-semibold text-xs lg:text-base;
+    @apply py-2.5 px-5 rounded-lg cursor-pointer font-semibold text-xs lg:text-base hover:brightness-90 hover:delay-75;
   }
 
   .btn-primary {
@@ -118,6 +121,10 @@ body {
 
 /* Utils */
 @layer utilities {
+  .f-col {
+    @apply flex flex-col;
+  }
+
   .f-center {
     @apply flex justify-center items-center;
   }

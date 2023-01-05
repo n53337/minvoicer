@@ -9,6 +9,7 @@ module.exports = {
       "brown-500": "rgba(44, 44, 44, 0.6)",
       "brown-300": "rgba(44, 44, 44, 0.4)",
       "brown-100": "rgba(44, 44, 44, 0.2)",
+      addon: "rgba(84, 71, 71, 1)",
       white: "rgba(255, 255, 255, 1)",
     },
   },
