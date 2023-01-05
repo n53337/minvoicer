@@ -1,3 +1,4 @@
+import Features from "../../components/Home/Features";
 import Header from "../../components/Home/Header";
 import Navbar from "../../components/Home/Navbar";
 
@@ -7,6 +8,7 @@ const Home = () => {
       <section className="w-full h-screen bg-gradient-to-b from-brown to-addon relative f-col">
         <Navbar />
         <Header />
+        <Features />
         <div class="fill-white absolute bottom-0 left-0 w-full overflow-hidden ">
           <svg
             className="relative block w-full h-28 "

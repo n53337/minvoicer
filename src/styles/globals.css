@@ -84,11 +84,11 @@ body {
   }
 
   h1 {
-    @apply font-medium text-xl lg:text-3xl;
+    @apply font-medium text-2xl lg:text-5xl leading-normal;
   }
 
   p {
-    @apply font-normal text-sm lg:text-base;
+    @apply font-normal text-xs lg:text-base;
   }
 }
 

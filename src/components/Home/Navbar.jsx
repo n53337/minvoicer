@@ -8,10 +8,12 @@ const Navbar = () => {
         <img src={logo} alt="minvoicer logo" className="w-32 lg:w-48" />
       </Link>
       <div className="">
-        <Link>
-          <button className="btn text-white">Sign in</button>
+        <Link to="/login">
+          <button className="btn text-white">Login</button>
         </Link>
-        <button className="btn btn-primary-w">Register</button>
+        <Link to="/register">
+          <button className="btn btn-primary-w">Register</button>
+        </Link>
       </div>
     </header>
   );
