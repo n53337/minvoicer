@@ -1,4 +1,4 @@
-import RoutesController from "../../router/RoutesController";
+import RoutesController from "./router/RoutesController";
 
 function App() {
   const user = false;
