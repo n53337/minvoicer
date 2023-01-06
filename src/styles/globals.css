@@ -117,6 +117,10 @@ body {
   .btn-accent-w {
     @apply bg-none text-white border-2 border-white;
   }
+
+  .link {
+    @apply font-medium text-sm lg:text-base;
+  }
 }
 
 /* Utils */

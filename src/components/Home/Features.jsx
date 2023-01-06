@@ -3,7 +3,7 @@ import realTimeArt from "../../assets/icons/RealtimeArt.svg";
 import printingArt from "../../assets/icons/PrintingArt.svg";
 const Features = () => {
   return (
-    <section className="p-6 lg:p-12 f-col lg:gap-24">
+    <section className="p-6 lg:p-12 f-col lg:gap-24 text-brown">
       <div className="f-col md:flex-row md:f-around items-center gap-12 md:gap-16 text-center lg:text-left">
         <img
           src={realTimeArt}
