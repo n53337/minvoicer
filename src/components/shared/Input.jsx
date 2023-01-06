@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
@@ -6,7 +5,7 @@ const Input = ({ type, label, required, placeHolder, error }) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className="f-col text-brown">
+    <div className="f-col text-brown gap-1">
       <label htmlFor={label} className="font-normal text-sm">
         {label}
       </label>
@@ -14,7 +13,7 @@ const Input = ({ type, label, required, placeHolder, error }) => {
       {type === "password" ? (
         <div className="relative">
           <input
-            type="password"
+            type={visible ? "text" : "password"}
             id={label}
             placeholder={placeHolder}
             required={required}
