@@ -11,6 +11,7 @@ module.exports = {
       "brown-100": "rgba(44, 44, 44, 0.2)",
       addon: "rgba(84, 71, 71, 1)",
       white: "rgba(255, 255, 255, 1)",
+      error: "rgba(255, 56, 56, 1)",
     },
   },
   plugins: [],
