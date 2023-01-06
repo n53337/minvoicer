@@ -1,5 +1,6 @@
-import { BeakerIcon } from "@heroicons/react/24/solid";
+import { BeakerIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import Input from "../shared/Input";
 const LogForm = () => {
   return (
     <section>
@@ -12,23 +13,15 @@ const LogForm = () => {
         </Link>
       </nav>
       <div>
-        <h2>Get Started for free!</h2>
+        <h1>Get Started for free!</h1>
         <form>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" />
-            <span>Error Handler</span>
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" />
-            <span>Error Handler</span>
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
-            <span>Error Handler</span>
-          </div>
+          <Input
+            type="password"
+            label="Password"
+            placeHolder="Enter your name"
+            required={true}
+            error="Error Handling"
+          />
           <button className="btn btn-primary">Register</button>
           <span>Or register using</span>
           <button className="btn btn-accent">

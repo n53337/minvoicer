@@ -2,7 +2,7 @@ import LogForm from "../../components/shared/LogForm";
 
 const Register = () => {
   return (
-    <main className="f-center w-full h-screen bg-brown-100">
+    <main className="f-center w-full h-screen bg-white">
       <LogForm />
     </main>
   );

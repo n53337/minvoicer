@@ -9,7 +9,7 @@ const Home = () => {
       <section className="w-full h-screen bg-gradient-to-b from-brown to-addon relative f-col">
         <Navbar />
         <Header />
-        <div class="fill-white absolute bottom-0 left-0 w-full overflow-hidden ">
+        <div className="fill-white absolute bottom-0 left-0 w-full overflow-hidden ">
           <svg
             className="relative block w-full h-28 "
             xmlns="http://www.w3.org/2000/svg"
