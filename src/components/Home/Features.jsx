@@ -5,7 +5,11 @@ const Features = () => {
   return (
     <section className="p-6 lg:p-12 f-col lg:gap-24">
       <div className="f-col md:flex-row md:f-around items-center gap-12 md:gap-16 text-center lg:text-left">
-        <img src={realTimeArt} alt="save time" className="w-48 flex-1" />
+        <img
+          src={realTimeArt}
+          alt="save time"
+          className="w-48 flex-1 lg:h-4/6"
+        />
         <div className="flex-1 f-col gap-2 lg:gap-4">
           <h2>Save time with easy bookkeeping</h2>
           <p className="text-brown-500">
@@ -22,7 +26,11 @@ const Features = () => {
       </div>
 
       <div className="f-col md:flex-row-reverse  md:f-around items-center gap-12 md:gap-16 py-10 text-center lg:text-left">
-        <img src={printingArt} alt="save time" className="w-48 flex-1 " />
+        <img
+          src={printingArt}
+          alt="save time"
+          className="w-48 flex-1 lg:h-4/6"
+        />
 
         <div className="flex-1 f-col gap-2 lg:gap-4 ">
           <h2>Get paid faster for your work.</h2>
