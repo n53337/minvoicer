@@ -99,7 +99,7 @@ body {
 /* Components Classes */
 @layer components {
   .btn {
-    @apply py-2.5 px-5 rounded-lg cursor-pointer border-2 font-semibold text-xs lg:text-base hover:brightness-90 hover:delay-75;
+    @apply py-1.5 px-2 lg:py-2.5 lg:px-5 rounded-lg cursor-pointer border-2 font-semibold text-xs lg:text-base hover:brightness-90 hover:delay-75;
   }
 
   .btn-primary {
