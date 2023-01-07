@@ -1,9 +1,11 @@
-import AppNavbar from "../../components/shared/AppNavbar";
+import AppSkeleton from "../../components/shared/AppSkeleton";
 
 const Dashboard = () => {
   return (
     <main className="w-screen h-screen">
-      <AppNavbar />
+      <AppSkeleton>
+        <h1>Hey</h1>
+      </AppSkeleton>
     </main>
   );
 };
