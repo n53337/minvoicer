@@ -80,26 +80,26 @@ body {
   }
 
   a {
-    @apply font-medium text-sm lg:text-base;
+    @apply font-medium text-sm md:text-base;
   }
 
   h1 {
-    @apply font-medium text-2xl lg:text-5xl leading-normal;
+    @apply font-medium text-2xl md:text-5xl leading-normal;
   }
 
   h2 {
-    @apply font-medium text-xl lg:text-4xl leading-snug;
+    @apply font-medium text-xl md:text-4xl leading-snug;
   }
 
   p {
-    @apply font-normal text-xs lg:text-base;
+    @apply font-normal text-xs md:text-base;
   }
 }
 
 /* Components Classes */
 @layer components {
   .btn {
-    @apply py-1.5 px-2 lg:py-2.5 lg:px-5 rounded-lg cursor-pointer border-2 font-semibold text-xs lg:text-base hover:brightness-90 hover:delay-75;
+    @apply py-1.5 px-2 md:py-2.5 md:px-5 rounded-md cursor-pointer border-2 font-semibold text-xs md:text-base hover:brightness-90 hover:delay-75;
   }
 
   .btn-primary {
@@ -119,7 +119,7 @@ body {
   }
 
   .link {
-    @apply font-medium text-sm lg:text-base;
+    @apply font-medium text-sm md:text-base;
   }
 }
 
