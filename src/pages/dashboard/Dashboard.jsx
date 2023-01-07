@@ -1,5 +1,11 @@
+import Navbar from "../../components/shared/Navbar";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <main className="w-screen h-screen">
+      <Navbar />
+    </main>
+  );
 };
 
 export default Dashboard;
