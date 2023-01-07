@@ -1,9 +1,9 @@
-import Navbar from "../../components/shared/Navbar";
+import AppNavbar from "../../components/shared/AppNavbar";
 
 const Dashboard = () => {
   return (
     <main className="w-screen h-screen">
-      <Navbar />
+      <AppNavbar />
     </main>
   );
 };
