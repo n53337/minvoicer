@@ -12,7 +12,7 @@ const Navbar = ({}) => {
   const nonActiveStyle = "opacity-50 hover:opacity-100 ease-in duration-300";
 
   return (
-    <header className="h-14 w-screen md:w-16 md:h-screen f-center md:mx-4">
+    <header className="h-14 w-full md:w-16 md:h-screen f-center my-4 md:my-0 md:mx-4">
       <div className="w-3/4 h-full md:w-full md:h-3/4 bg-brown rounded-3xl shadow-2xl flex md:f-col justify-between items-center px-4 md:py-6">
         <img src={logo} alt="minvoicer logo" className="w-7 md:w-3/4" />
         <nav className="flex md:f-col gap-4 md:gap-8 md:pb-24">

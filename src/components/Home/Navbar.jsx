@@ -7,7 +7,7 @@ const Navbar = () => {
       <Link to="/">
         <img src={logo} alt="minvoicer logo" className="w-32 lg:w-48" />
       </Link>
-      <div className="">
+      <div className="flex gap-2">
         <Link to="/login">
           <button className="btn text-white">Login</button>
         </Link>
