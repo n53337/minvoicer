@@ -13,7 +13,7 @@ import Profile from "../pages/profile/Profile";
 import NotFound from "../pages/404/NotFound";
 
 const RoutesController = ({ auth }) => {
-  const RequireAuth = ({ children, navTo = "/register", auth }) => {
+  const RequireAuth = ({ children, navTo = "/register" }) => {
     return auth ? children : <Navigate to={navTo} />;
   };
 
