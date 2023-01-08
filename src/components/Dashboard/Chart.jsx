@@ -24,38 +24,47 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top",
+      position: "bottom",
     },
     title: {
       display: true,
-      text: "Chart.js Line Chart",
+      text: "Revenue Chart",
     },
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+const labels = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
+// Dummy Data
 const data = {
   labels,
   datasets: [
     {
-      label: "Dataset 1",
-      data: [220, -340, 120, 1000, 124],
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: [-220, 340, 150, -300, 14],
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      label: "Paid Invoices",
+      data: [2, 0, 1, 4, 9, 1, 3, 5, 7, 3, 3, 0],
+      borderColor: "rgba(44, 44, 44, 1)",
+      backgroundColor: "rgba(44, 44, 44, 0.4)",
     },
   ],
+  maintainAspectRatio: false,
 };
 
 const Chart = () => {
   return (
-    <div>
+    <div className="w-2/3">
       <Line options={options} data={data} />
     </div>
   );

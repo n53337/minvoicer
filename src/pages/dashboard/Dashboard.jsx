@@ -12,8 +12,8 @@ const Dashboard = () => {
   return (
     <main className="min-w-full h-screen">
       <AppSkeleton title="Dashboard" utils>
-        <div className="f-col py-6">
-          <div className="f-evenly gap-y-4 flex-wrap ">
+        <div className="w-full h-full f-col py-6 gap-8 md:gap-4 ">
+          <div className="f-evenly gap-y-4 flex-wrap">
             <Card
               label="Revenue"
               value="$120,098"
@@ -37,7 +37,8 @@ const Dashboard = () => {
               icon={<DocumentDuplicateIcon className="w-4 md:w-6 text-brown" />}
             />
           </div>
-          <div>
+
+          <div className="f-center">
             <Chart />
           </div>
         </div>
