@@ -1,6 +1,13 @@
 import AppSkeleton from "../../components/shared/AppSkeleton";
 import Card from "../../components/Dashboard/Card";
-import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
+import Chart from "../../components/Dashboard/Chart";
+import {
+  CurrencyDollarIcon,
+  UserGroupIcon,
+  BuildingStorefrontIcon,
+  DocumentDuplicateIcon,
+} from "@heroicons/react/24/outline";
+
 const Dashboard = () => {
   return (
     <main className="min-w-full h-screen">
@@ -15,20 +22,24 @@ const Dashboard = () => {
             <Card
               label="Customers"
               value="173"
-              icon={<CurrencyDollarIcon className="w-4 md:w-6 text-brown" />}
+              icon={<UserGroupIcon className="w-4 md:w-6 text-brown" />}
             />
             <Card
               label="Products"
               value="06"
-              icon={<CurrencyDollarIcon className="w-4 md:w-6 text-brown" />}
+              icon={
+                <BuildingStorefrontIcon className="w-4 md:w-6 text-brown" />
+              }
             />
             <Card
               label="Invoices"
               value="32"
-              icon={<CurrencyDollarIcon className="w-4 md:w-6 text-brown" />}
+              icon={<DocumentDuplicateIcon className="w-4 md:w-6 text-brown" />}
             />
           </div>
-          <div>laskdn</div>
+          <div>
+            <Chart />
+          </div>
         </div>
       </AppSkeleton>
     </main>
