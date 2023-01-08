@@ -94,6 +94,11 @@ body {
   p {
     @apply font-normal text-xs md:text-base;
   }
+
+  th,
+  td {
+    @apply py-6 text-center;
+  }
 }
 
 /* Components Classes */
