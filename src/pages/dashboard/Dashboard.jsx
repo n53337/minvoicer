@@ -11,7 +11,7 @@ import {
 const Dashboard = () => {
   return (
     <main className="min-w-full h-screen">
-      <AppSkeleton title="Dashboard" utils>
+      <AppSkeleton title="Dashboard">
         <div className="w-full h-full f-col py-6 gap-8 md:gap-4 ">
           <div className="f-evenly gap-y-4 flex-wrap">
             <Card
