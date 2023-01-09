@@ -149,4 +149,8 @@ body {
   .f-evenly {
     @apply flex justify-evenly;
   }
+
+  .status {
+    @apply p-0.5 text-brown text-sm border border-brown rounded-full;
+  }
 }
