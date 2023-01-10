@@ -7,22 +7,16 @@ const Status = ({ status }) => {
 };
 
 const Invoices = () => {
-  const tableData = {
-    head: ["Product Name", "price", "Quantity", "Date", "Actions"],
-    body: [
-      ["Rotto Clipper", "49.00$", 320, "03 Jan 2023", <Status status="Paid" />],
-      ["Something", "42.00$", 30, "07 Jan 2023", <Status status="Pending" />],
-      ["Product", "39.99$", 3, "01 Jan 2023", <Status status="Paid" />],
-    ],
-  };
+  const tableHead = ["Product Name", "price", "Quantity", "Date", "Actions"];
 
-  const test = [
+  const tableData = [
     {
       name: "Rotto Clipper",
       price: 49.0,
       qty: 320,
       date: "03 Jan 2023",
       status: "paid",
+      id: "10",
     },
     {
       name: "Something",
@@ -30,6 +24,7 @@ const Invoices = () => {
       qty: 30,
       date: "07 Jan 2023",
       status: "pending",
+      id: "20",
     },
     {
       name: "Product",
@@ -37,14 +32,15 @@ const Invoices = () => {
       qty: 30,
       date: "01 Jan 2023",
       status: "paid",
+      id: "30",
     },
   ];
 
   return (
     <AppSkeleton title="Invoices" utils>
       <div className="max-h-full overflow-auto">
-        <Table tableData={tableData}>
-          <InvoiceRow data={test} />
+        <Table tableHead={tableHead}>
+          <InvoiceRow data={tableData} />
         </Table>
       </div>
     </AppSkeleton>
