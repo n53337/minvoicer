@@ -10,8 +10,10 @@ const AppSkeleton = ({ children, title, utils }) => {
 
             {utils && (
               <div className="flex gap-3">
-                <button className="btn btn-accent">{utils.primary}</button>
-                <button className="btn btn-primary">{utils.secondary}</button>
+                {/* <button className="btn btn-accent">{utils.primary}</button>
+                <button className="btn btn-primary">{utils.secondary}</button> */}
+                {utils.primary}
+                {utils.secondary}
               </div>
             )}
           </aside>

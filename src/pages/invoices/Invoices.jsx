@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import InvoiceRow from "../../components/Invoices/InvoiceRow";
 import AppSkeleton from "../../components/shared/AppSkeleton";
 import Table from "../../components/shared/Table";
@@ -39,7 +40,14 @@ const Invoices = () => {
   return (
     <AppSkeleton
       title="Invoices"
-      utils={{ primary: "Filter by Status", secondary: "New Invoice" }}
+      utils={{
+        primary: <button className="btn btn-accent">Filter By Status</button>,
+        secondary: (
+          <Link to="new">
+            <button className="btn btn-primary">New Invoice</button>
+          </Link>
+        ),
+      }}
     >
       <div className="max-h-full overflow-auto">
         <Table tableHead={tableHead}>
