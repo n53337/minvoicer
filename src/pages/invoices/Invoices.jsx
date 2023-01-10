@@ -37,7 +37,10 @@ const Invoices = () => {
   ];
 
   return (
-    <AppSkeleton title="Invoices" utils>
+    <AppSkeleton
+      title="Invoices"
+      utils={{ primary: "Filter by Status", secondary: "New Invoice" }}
+    >
       <div className="max-h-full overflow-auto">
         <Table tableHead={tableHead}>
           <InvoiceRow data={tableData} />
