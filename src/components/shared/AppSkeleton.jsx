@@ -15,7 +15,7 @@ const AppSkeleton = ({ children, title, utils }) => {
               </div>
             )}
           </aside>
-          <div className="w-full h-full p-1 md:p-4">
+          <div className="w-full h-full p-1 md:p-4 ">
             <div className="w-full h-full px-4 ">{children}</div>
           </div>
         </div>
