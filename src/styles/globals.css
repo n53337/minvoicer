@@ -94,6 +94,11 @@ body {
   p {
     @apply font-normal text-xs md:text-base;
   }
+
+  th,
+  td {
+    @apply py-6 text-center;
+  }
 }
 
 /* Components Classes */
@@ -143,5 +148,9 @@ body {
 
   .f-evenly {
     @apply flex justify-evenly;
+  }
+
+  .status {
+    @apply w-fit px-3 text-brown text-sm border border-brown rounded-full;
   }
 }

@@ -5,6 +5,7 @@ import Login from "../pages/login/Login";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Invoices from "../pages/invoices/Invoices";
 import NewInvoice from "../pages/invoices/NewInvoice";
+import InvoiceOverview from "../pages/invoices/InvoiceOverview";
 import Products from "../pages/products/Products";
 import NewProduct from "../pages/products/NewProduct";
 import Customers from "../pages/customers/Customers";
@@ -62,6 +63,14 @@ const RoutesController = ({ auth }) => {
             element={
               <RequireAuth>
                 <NewInvoice />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path=":id"
+            element={
+              <RequireAuth>
+                <InvoiceOverview />
               </RequireAuth>
             }
           />
