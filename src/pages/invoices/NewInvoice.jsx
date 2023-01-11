@@ -1,4 +1,8 @@
-import { TrashIcon, PlusIcon } from "@heroicons/react/24/outline";
+import {
+  TrashIcon,
+  PlusIcon,
+  ChevronUpDownIcon,
+} from "@heroicons/react/24/outline";
 import Input from "../../components/shared/Input";
 import AppSkeleton from "../../components/shared/AppSkeleton";
 import { Link } from "react-router-dom";
@@ -6,23 +10,30 @@ import { Link } from "react-router-dom";
 const NewInvoice = () => {
   return (
     <AppSkeleton
-      title="New Invoice"
-      utils={{
-        primary: <button className="btn btn-accent">Discard</button>,
-        secondary: (
-          <Link>
-            <button className="btn btn-primary">Save Changes</button>
-          </Link>
-        ),
-      }}
+    // title="New Invoice"
+    // utils={{
+    //   primary: <button className="btn btn-accent">Discard</button>,
+    //   secondary: (
+    //     <Link>
+    //       <button className="btn btn-primary">Save Changes</button>
+    //     </Link>
+    //   ),
+    // }}
     >
-      <div className="w-full h-full f-center">
+      <div className="w-full h-full md:f-center">
         <form className="flex f-col md:flex-row items-center gap-8 md:gap-16 text-brown">
           {/* Data */}
           <div className="flex-1 f-col gap-4 ">
             {/* Bill From */}
-            <span className="text-center font-semibold text-lg">Bill From</span>
-            <Input type="text" label="Street Adress" />
+
+            <span className="text-center ">
+              <p className="font-semibold text-lg">Bill From</p>
+            </span>
+            <Input
+              type="text"
+              label="Street Adress"
+              defaultValue="default value"
+            />
             <div className="flex gap-2 md:gap-10">
               <Input type="text" label="City" />
               <Input type="text" label="Post Code" />
@@ -30,7 +41,17 @@ const NewInvoice = () => {
             </div>
 
             {/* Bill To */}
-            <span className="text-center font-semibold text-lg">Bill To</span>
+
+            <span className="flex item-center justify-center">
+              <p className="font-semibold text-lg">Bill To</p>
+            </span>
+
+            {/* Radio Select */}
+
+            <div className="flex gap-4 justify-evenly text-center">
+              <Input type="radio" label="Import from exesting user" />
+              <Input type="radio" label="Custom Informations" />
+            </div>
 
             <Input type="text" label="Client's Name" />
             <Input type="email" label="Client's Email" />
@@ -47,12 +68,9 @@ const NewInvoice = () => {
             <span className="text-center font-semibold text-lg">
               Invoice Detalis
             </span>
-            <div className="flex gap-2 md:gap-10 justify-between">
+            <div className=" flex gap-2 md:gap-10 justify-between">
               <div className="flex-1">
                 <Input type="date" label="Invoice Date" />
-              </div>
-              <div className="flex-1">
-                <Input type="select" label="Payement Terms" />
               </div>
             </div>
             <Input type="text" label="Project Description" />
@@ -60,7 +78,6 @@ const NewInvoice = () => {
               Product List
             </span>
             <div className="flex items-center gap-2">
-              {/* <Input type="select" label="Product" /> */}
               <div className="f-col text-brown gap-1">
                 <label htmlFor="product" className="font-normal text-sm">
                   Product
@@ -76,7 +93,6 @@ const NewInvoice = () => {
                   <option value="product3">product3</option>
                 </select>
               </div>
-
               <Input type="number" label="Qty." />
               <Input type="number" label="Price" />
               <Input type="text" label="Total" disabled={true} />
