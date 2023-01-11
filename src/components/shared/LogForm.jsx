@@ -11,7 +11,7 @@ const LogForm = ({ register }) => {
             <Input
               type="text"
               label="Name"
-              placeHolder="Enter your name"
+              placeholder="Enter your name"
               required={true}
               error=""
             />
@@ -20,7 +20,7 @@ const LogForm = ({ register }) => {
           <Input
             type="email"
             label="Email"
-            placeHolder="name@email.com"
+            placeholder="name@email.com"
             required={true}
             error=""
           />
@@ -28,7 +28,7 @@ const LogForm = ({ register }) => {
           <Input
             type="password"
             label="Password"
-            placeHolder="6+ characters"
+            placeholder="6+ characters"
             required={true}
             error=""
           />

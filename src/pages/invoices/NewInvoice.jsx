@@ -4,9 +4,9 @@ import AppSkeleton from "../../components/shared/AppSkeleton";
 const NewInvoice = () => {
   return (
     <AppSkeleton>
-      <form>
+      <form className="flex gap-16">
         {/* Data */}
-        <div>
+        <div className="flex-1">
           {/* Bill From */}
           <aside>Bill From</aside>
           <Input type="text" label="Street Adress" />
@@ -30,8 +30,9 @@ const NewInvoice = () => {
         </div>
 
         {/* Details */}
-        <div>
+        <div className="flex-1">
           <span>Invoice Detalis</span>
+          <input type="" />
           <div>
             <Input type="date" label="Invoice Date" />
             <Input type="select" label="Payement Terms" />

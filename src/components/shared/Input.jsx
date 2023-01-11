@@ -1,22 +1,20 @@
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-const Input = ({ type, label, required, placeHolder, error }) => {
+const Input = (props) => {
   const [visible, setVisible] = useState(false);
 
   return (
     <div className="f-col text-brown gap-1">
-      <label htmlFor={label} className="font-normal text-sm">
-        {label}
+      <label htmlFor={props.label} className="font-normal text-sm">
+        {props.label}
       </label>
 
-      {type === "password" ? (
+      {props.type === "password" ? (
         <div className="relative">
           <input
             type={visible ? "text" : "password"}
-            id={label}
-            placeholder={placeHolder}
-            required={required}
+            {...props}
             className="w-full px-4 py-3 text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
           />
           <span
@@ -28,15 +26,12 @@ const Input = ({ type, label, required, placeHolder, error }) => {
         </div>
       ) : (
         <input
-          type={type}
-          id={label}
-          placeholder={placeHolder}
-          required={required}
+          {...props}
           className="px-4 py-3 text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
         />
       )}
 
-      <span className="text-xs text-error font-light">{error}</span>
+      <span className="text-xs text-error font-light">{props.error}</span>
     </div>
   );
 };
