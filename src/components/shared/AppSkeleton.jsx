@@ -2,25 +2,21 @@ import AppNavbar from "../shared/AppNavbar";
 const AppSkeleton = ({ children, title, utils }) => {
   return (
     <main className="min-w-full h-screen">
-      <section className="w-full h-full bg-brown-100 flex flex-col-reverse md:flex-row">
+      <section className="w-full h-full bg-white flex flex-col-reverse md:flex-row">
         <AppNavbar />
-        <div className="w-full h-full p-3 md:px-6 md:py-12 f-col gap-1">
+        <div className="w-full h-full px-2 py-4 f-col gap-1">
           <aside className="f-between items-center">
             <h2>{title}</h2>
 
             {utils && (
               <div className="flex gap-3">
-                {/* <button className="btn btn-accent">{utils.primary}</button>
-                <button className="btn btn-primary">{utils.secondary}</button> */}
                 {utils.primary}
                 {utils.secondary}
               </div>
             )}
           </aside>
           <div className="w-full h-full p-1 md:p-4">
-            <div className="w-full h-full bg-white border-2 border-brown rounded-2xl px-4">
-              {children}
-            </div>
+            <div className="w-full h-full px-4">{children}</div>
           </div>
         </div>
       </section>
