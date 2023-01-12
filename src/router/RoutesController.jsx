@@ -8,6 +8,7 @@ import NewInvoice from "../pages/invoices/NewInvoice";
 import InvoiceOverview from "../pages/invoices/InvoiceOverview";
 import Products from "../pages/products/Products";
 import NewProduct from "../pages/products/NewProduct";
+import EditProduct from "../pages/products/EditProduct";
 import Customers from "../pages/customers/Customers";
 import NewCustomer from "../pages/customers/NewCustomer";
 import EditCustomer from "../pages/customers/EditCustomer";
@@ -118,6 +119,14 @@ const RoutesController = ({ auth }) => {
             element={
               <RequireAuth>
                 <NewProduct />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path=":id"
+            element={
+              <RequireAuth>
+                <EditProduct />
               </RequireAuth>
             }
           />
