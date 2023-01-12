@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import AppSkeleton from "../../components/shared/AppSkeleton";
-import CustomerForm from "../../components/Customers/CustomerForm";
+import CustomerForm from "../../components/shared/CustomerForm";
 
 const EditCustomer = () => {
   const { id: customerId } = useParams();

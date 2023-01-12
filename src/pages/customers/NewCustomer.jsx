@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CustomerForm from "../../components/Customers/CustomerForm";
+import CustomerForm from "../../components/shared/CustomerForm";
 import AppSkeleton from "../../components/shared/AppSkeleton";
 
 const NewCustomer = () => {
