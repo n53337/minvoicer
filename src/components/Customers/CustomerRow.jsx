@@ -5,7 +5,7 @@ const CustomerRow = ({ data }) => {
     <>
       {data.map((row) => {
         return (
-          <tr key={row.name}>
+          <tr key={row.id}>
             <td>{row.name}</td>
             <td>{row.email}</td>
             <td>{row.created}</td>
