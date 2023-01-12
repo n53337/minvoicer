@@ -1,7 +1,7 @@
 import AppNavbar from "../shared/AppNavbar";
 const AppSkeleton = ({ children, title, utils }) => {
   return (
-    <main className="min-w-full h-screen">
+    <main className="min-w-full h-screen text-brown">
       <section className="w-full h-full bg-white flex flex-col-reverse md:flex-row">
         <AppNavbar />
         <div className="w-full h-full px-2 py-4 f-col gap-1 overflow-auto mb-24">
