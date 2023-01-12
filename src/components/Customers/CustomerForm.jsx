@@ -5,7 +5,7 @@ const CustomerForm = () => {
   return (
     <form className="md:w-3/4 text-brown f-col gap-8 ">
       {/* Profile Picture */}
-      <div className="f-center gap-4">
+      <div className="pt-4 md:pt-0 f-center gap-4">
         <div className="relative cursor-pointer">
           <UserIcon className="w-16 md:w-20 border-2 md:border-4 border-brown rounded-full p-2 " />
           <span>

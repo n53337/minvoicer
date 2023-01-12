@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CustomerRow = ({ data }) => {
   return (
     <>
@@ -8,7 +10,9 @@ const CustomerRow = ({ data }) => {
             <td>{row.email}</td>
             <td>{row.created}</td>
             <td className="f-center gap-4">
-              <button className="btn btn-primary text-xs">Edit</button>
+              <Link to={`@${row.id}`}>
+                <button className="btn btn-primary text-xs">Edit</button>
+              </Link>
               <button className="btn btn-accent text-xs">Delete</button>
             </td>
           </tr>

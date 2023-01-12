@@ -10,6 +10,7 @@ import Products from "../pages/products/Products";
 import NewProduct from "../pages/products/NewProduct";
 import Customers from "../pages/customers/Customers";
 import NewCustomer from "../pages/customers/NewCustomer";
+import EditCustomer from "../pages/customers/EditCustomer";
 import Profile from "../pages/profile/Profile";
 import NotFound from "../pages/404/NotFound";
 
@@ -90,6 +91,14 @@ const RoutesController = ({ auth }) => {
             element={
               <RequireAuth>
                 <NewCustomer />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path=":id"
+            element={
+              <RequireAuth>
+                <EditCustomer />
               </RequireAuth>
             }
           />

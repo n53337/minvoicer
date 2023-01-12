@@ -8,16 +8,16 @@ const Customers = () => {
 
   const tableData = [
     {
-      name: "Rotto Clipper",
+      name: "John Doe",
       email: "test@email.com",
       created: "03 Jan 2023",
       id: "10",
     },
     {
-      name: "Product Clipper",
+      name: "Jonhatan Doe",
       email: "test@email.com",
       created: "03 Jan 2023",
-      id: "10",
+      id: "20",
     },
   ];
 
