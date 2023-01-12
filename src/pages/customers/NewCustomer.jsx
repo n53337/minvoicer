@@ -16,7 +16,7 @@ const NewCustomer = () => {
       }}
     >
       <div className="w-full h-full md:f-center">
-        <CustomerForm />
+        <CustomerForm data={"new"} />
       </div>
     </AppSkeleton>
   );

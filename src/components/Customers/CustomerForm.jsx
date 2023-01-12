@@ -2,8 +2,7 @@ import { UserIcon, PencilIcon } from "@heroicons/react/24/outline";
 import Input from "../shared/Input";
 
 const CustomerForm = ({ data }) => {
-  const [customer] = data;
-  customer && console.log("works");
+  const [customer] = data ? data : [null];
 
   return (
     <>
@@ -28,7 +27,7 @@ const CustomerForm = ({ data }) => {
           {/* Form */}
           <div className="md:flex md:gap-14">
             <div className="flex-1">
-              <Input label="Name" type="text" defaultValue={customer.name} />
+              <Input label="Name" type="text" defaultValue={customer?.name} />
               <Input label="Email" type="email" defaultValue={customer.email} />
               <div>
                 <Input
