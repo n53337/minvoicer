@@ -5,7 +5,6 @@ const InvoiceRow = ({ data }) => {
   const navigate = useNavigate();
   // Handle Invoice Overview
   const handleInvoiceClick = (id) => {
-    console.log(id);
     navigate(`${id}`);
   };
 
