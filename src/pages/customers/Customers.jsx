@@ -14,10 +14,10 @@ const Customers = () => {
       id: "10",
     },
     {
+      id: "102",
       name: "Jonhatan Doe",
       email: "test@email.com",
       created: "03 Jan 2023",
-      id: "20",
     },
   ];
 
