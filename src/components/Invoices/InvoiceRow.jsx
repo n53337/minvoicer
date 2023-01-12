@@ -5,7 +5,7 @@ const InvoiceRow = ({ data }) => {
   const navigate = useNavigate();
   // Handle Invoice Overview
   const handleInvoiceClick = (id) => {
-    navigate(`${id}`);
+    navigate(`@${id}`);
   };
 
   return (
@@ -13,14 +13,14 @@ const InvoiceRow = ({ data }) => {
       {data.map((row) => {
         return (
           <tr
-            key={row.name}
+            key={row.id}
             className="cursor-pointer hover:bg-brown-100 hover:border hover:border-brown"
             onClick={() => handleInvoiceClick(row.id)}
           >
-            <td>{row.name}</td>
-            <td>{row.price}</td>
-            <td>{row.qty}</td>
+            <td>{`#${row.id}`}</td>
             <td>{row.date}</td>
+            <td>{row.to}</td>
+            <td>{row.amount}</td>
             <td className="f-center">
               <div className="status">{row.status}</div>
             </td>

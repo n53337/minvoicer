@@ -8,32 +8,29 @@ const Status = ({ status }) => {
 };
 
 const Invoices = () => {
-  const tableHead = ["Product Name", "price", "Quantity", "Date", "Actions"];
+  const tableHead = ["Invoice", "Date", "To", "Amount", "Actions"];
 
   const tableData = [
     {
-      name: "Rotto Clipper",
-      price: 49.0,
-      qty: 320,
-      date: "03 Jan 2023",
-      status: "paid",
       id: "10",
-    },
-    {
-      name: "Something",
-      price: 43.0,
-      qty: 30,
-      date: "07 Jan 2023",
-      status: "pending",
-      id: "20",
-    },
-    {
-      name: "Product",
-      price: 39.0,
-      qty: 30,
-      date: "01 Jan 2023",
+      date: "03 Jan 2023",
+      to: "John Doe",
+      amount: 49.0,
       status: "paid",
+    },
+    {
+      id: "20",
+      date: "04 Jan 2023",
+      to: "Jonhatan",
+      amount: 900.0,
+      status: "pending",
+    },
+    {
       id: "30",
+      date: "03 Jan 2023",
+      to: "Marya Doe",
+      amount: 549.0,
+      status: "paid",
     },
   ];
 
