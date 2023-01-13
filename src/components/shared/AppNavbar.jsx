@@ -33,6 +33,10 @@ const Navbar = () => {
       <div className="w-3/4 h-full md:w-full md:h-3/4 bg-brown rounded-3xl shadow-2xl flex md:f-col justify-between items-center px-4 md:py-6">
         <img src={logo} alt="minvoicer logo" className="w-7 md:w-3/4" />
         <nav className="flex md:f-col gap-4 md:gap-8 md:pb-24">
+          {/*  */}
+
+          {/* Dashboard */}
+
           <Link to="/dashboard" onClick={() => handlePageChange("dashboard")}>
             <div className="f-col items-center gap-0.5" title="Dashboard">
               <HomeIcon
@@ -45,6 +49,8 @@ const Navbar = () => {
               )}
             </div>
           </Link>
+
+          {/* Invoices */}
 
           <Link to="/invoices" onClick={() => handlePageChange("invoices")}>
             <div className="f-col items-center gap-0.5" title="Invoices">
@@ -59,6 +65,8 @@ const Navbar = () => {
             </div>
           </Link>
 
+          {/* Customers */}
+
           <Link to="/customers" onClick={() => handlePageChange("customers")}>
             <div className="f-col items-center gap-0.5" title="Customers">
               <UserGroupIcon
@@ -71,6 +79,8 @@ const Navbar = () => {
               )}
             </div>
           </Link>
+
+          {/* Products */}
 
           <Link to="/products" onClick={() => handlePageChange("products")}>
             <div className="f-col items-center gap-0.5" title="Products">
@@ -85,6 +95,8 @@ const Navbar = () => {
             </div>
           </Link>
         </nav>
+
+        {/* Profile */}
 
         <Link to="/profile" onClick={() => handlePageChange("profile")}>
           <div className="f-col items-center gap-0.5" title="Profile">

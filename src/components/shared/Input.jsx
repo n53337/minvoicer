@@ -13,8 +13,8 @@ const Input = (props) => {
       {props.type === "password" ? (
         <div className="relative">
           <input
-            type={visible ? "text" : "password"}
             {...props}
+            type={visible ? "text" : "password"}
             className="w-full px-4 py-3 text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
           />
           <span
