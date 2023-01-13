@@ -11,7 +11,7 @@ import {
 const Dashboard = () => {
   return (
     <AppSkeleton title="Dashboard">
-      <div className="w-full h-full f-col py-6 gap-8 md:gap-4 ">
+      <div className="w-full h-full f-col py-6 gap-8 md:gap-4 justify-around ">
         <div className="f-evenly gap-y-4 flex-wrap">
           <Card
             label="Revenue"
