@@ -1,7 +1,14 @@
-import React from "react";
+const GlobalReducer = (state, action) => {
+  switch (action.type) {
+    // Page Change
 
-const GlobalReducer = () => {
-  return <div>GlobalReducer</div>;
+    case "PAGE_CHANGE": {
+      return { ...state, currentPage: action.payload };
+    }
+
+    default:
+      return state;
+  }
 };
 
 export default GlobalReducer;

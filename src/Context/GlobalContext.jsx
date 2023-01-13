@@ -1,7 +1,25 @@
-import React from "react";
+import { createContext, useReducer } from "react";
+import GlobalReducer from "./GlobalReducer";
 
-const GlobalContext = () => {
-  return <div>GlobalContext</div>;
+// Context Init
+
+const initValue = {
+  user: null,
+  currentPage: localStorage.getItem("currPage") || "dashboard",
 };
 
-export default GlobalContext;
+export const GlobalContext = createContext(initValue);
+
+export const GlobalContextProvider = ({ children }) => {
+  ////
+
+  // Reducer Init
+
+  const [state, dispatch] = useReducer(GlobalReducer, initValue);
+
+  return (
+    <GlobalContext.Provider value={{ state, dispatch }}>
+      {children}
+    </GlobalContext.Provider>
+  );
+};
