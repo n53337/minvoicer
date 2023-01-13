@@ -1,7 +1,12 @@
-import React from "react";
+const GlobalReducer = (state, action) => {
+  switch (action.type) {
+    case "TEST": {
+      return "test";
+    }
 
-const GlobalReducer = () => {
-  return <div>GlobalReducer</div>;
+    default:
+      return state;
+  }
 };
 
 export default GlobalReducer;

@@ -1,12 +1,9 @@
 import "./styles/App.css";
 import RoutesController from "./router/RoutesController";
-import { GlobalContext, GlobalContextProvider } from "./Context/GlobalContext";
-import { useContext } from "react";
+import { GlobalContextProvider } from "./Context/GlobalContext";
 
 function App() {
   const user = true;
-  const value = useContext(GlobalContext);
-  console.log(value);
   return (
     <GlobalContextProvider>
       <RoutesController auth={user} />;

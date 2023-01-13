@@ -13,10 +13,6 @@ const Navbar = ({ active }) => {
 
   const [activePage, setActivePage] = useState("dashboard");
 
-  useEffect(() => {
-    console.log("*** i rendred hh ***");
-  }, []);
-
   return (
     <header className="h-14 w-full md:w-16 md:h-screen f-center my-4 md:my-0 md:mx-4 fixed md:static ">
       <div className="w-3/4 h-full md:w-full md:h-3/4 bg-brown rounded-3xl shadow-2xl flex md:f-col justify-between items-center px-4 md:py-6">

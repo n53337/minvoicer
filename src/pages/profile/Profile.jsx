@@ -5,9 +5,9 @@ import AppSkeleton from "../../components/shared/AppSkeleton";
 import { GlobalContext } from "../../Context/GlobalContext";
 
 const Profile = () => {
-  const global = useContext(GlobalContext);
+  const { state, dispatch } = useContext(GlobalContext);
 
-  console.log(global);
+  console.log(state);
   return (
     <AppSkeleton
       title="Profile"
