@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import CustomerForm from "../../components/shared/CustomerForm";
 import AppSkeleton from "../../components/shared/AppSkeleton";
+import { GlobalContext } from "../../Context/GlobalContext";
 
 const Profile = () => {
+  const global = useContext(GlobalContext);
+
+  console.log(global);
   return (
     <AppSkeleton
       title="Profile"
