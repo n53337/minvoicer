@@ -1,4 +1,5 @@
 import AppNavbar from "../shared/AppNavbar";
+
 const AppSkeleton = ({ children, title, utils }) => {
   return (
     <main className="min-w-full h-screen text-brown">
