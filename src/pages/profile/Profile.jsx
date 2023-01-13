@@ -7,7 +7,6 @@ import { GlobalContext } from "../../Context/GlobalContext";
 const Profile = () => {
   const { state, dispatch } = useContext(GlobalContext);
 
-  console.log(state);
   return (
     <AppSkeleton
       title="Profile"

@@ -1,7 +1,9 @@
 const GlobalReducer = (state, action) => {
   switch (action.type) {
-    case "TEST": {
-      return "test";
+    // Page Change
+
+    case "PAGE_CHANGE": {
+      return { ...state, currentPage: action.payload };
     }
 
     default:

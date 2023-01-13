@@ -3,18 +3,19 @@ import GlobalReducer from "./GlobalReducer";
 
 // Context Init
 
-const initValue = { user: null, page: null };
-
-const data = { user: "usef", page: "dashboard" };
+const initValue = {
+  user: null,
+  currentPage: localStorage.getItem("currPage") || "dashboard",
+};
 
 export const GlobalContext = createContext(initValue);
 
 export const GlobalContextProvider = ({ children }) => {
-  //
+  ////
 
   // Reducer Init
 
-  const [state, dispatch] = useReducer(GlobalReducer, data);
+  const [state, dispatch] = useReducer(GlobalReducer, initValue);
 
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
