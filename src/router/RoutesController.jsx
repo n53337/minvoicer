@@ -23,6 +23,8 @@ const RoutesController = ({ auth }) => {
   return (
     <Routes>
       <Route path="/">
+        {/*  */}
+
         {/* ---- Public Routes */}
 
         <Route index element={<Home />} />

@@ -151,6 +151,6 @@ body {
   }
 
   .status {
-    @apply w-fit px-3 text-brown text-sm border border-brown rounded-full;
+    @apply w-fit px-3 text-brown text-xs md:text-sm border border-brown rounded-full;
   }
 }
