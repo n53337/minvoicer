@@ -40,14 +40,14 @@ const Register = () => {
 
       const userCredential = signReq.user;
 
-      // dispatch({
-      //   type: "LOGIN",
-      //   payload: { email: userCredential.email, id: userCredential.uid },
-      // });
+      dispatch({
+        type: "REGISTER",
+        payload: { email: userCredential.email, id: userCredential.uid },
+      });
 
-      // // Redirect to Dashboard
+      // Redirect to Dashboard
 
-      // navigate("/dashboard");
+      navigate("/dashboard");
 
       console.log(userCredential);
     } catch (error) {
