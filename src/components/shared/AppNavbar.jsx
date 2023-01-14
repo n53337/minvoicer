@@ -4,25 +4,15 @@ import {
   UserGroupIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
-import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/icons/LogoIcon.svg";
-import { GlobalContext } from "../../Context/GlobalContext";
 
 const Navbar = () => {
   ////
 
-  // Active Page with local storage
+  // Active Page
 
-  const { state, dispatch } = useContext(GlobalContext);
-
-  useEffect(() => {
-    localStorage.setItem("currPage", state.currentPage);
-  }, [state.currentPage]);
-
-  const handlePageChange = (page) => {
-    dispatch({ type: "PAGE_CHANGE", payload: page });
-  };
+  const currPage = window.location.pathname.split("/")[1];
 
   // non-active Page style
 
@@ -33,60 +23,72 @@ const Navbar = () => {
       <div className="w-3/4 h-full md:w-full md:h-3/4 bg-brown rounded-3xl shadow-2xl flex md:f-col justify-between items-center px-4 md:py-6">
         <img src={logo} alt="minvoicer logo" className="w-7 md:w-3/4" />
         <nav className="flex md:f-col gap-4 md:gap-8 md:pb-24">
-          <Link to="/dashboard" onClick={() => handlePageChange("dashboard")}>
+          {/*  */}
+
+          {/* Dashboard */}
+
+          <Link to="/dashboard">
             <div className="f-col items-center gap-0.5" title="Dashboard">
               <HomeIcon
                 className={`w-6 text-white ${
-                  state.currentPage !== "dashboard" && nonActiveStyle
+                  currPage !== "dashboard" && nonActiveStyle
                 }`}
               />
-              {state.currentPage === "dashboard" && (
+              {currPage === "dashboard" && (
                 <span className="w-1 h-1 bg-white rounded-full"></span>
               )}
             </div>
           </Link>
 
-          <Link to="/invoices" onClick={() => handlePageChange("invoices")}>
+          {/* Invoices */}
+
+          <Link to="/invoices">
             <div className="f-col items-center gap-0.5" title="Invoices">
               <DocumentTextIcon
                 className={`w-6 text-white ${
-                  state.currentPage !== "invoices" && nonActiveStyle
+                  currPage !== "invoices" && nonActiveStyle
                 }`}
               />
-              {state.currentPage === "invoices" && (
+              {currPage === "invoices" && (
                 <span className="w-1 h-1 bg-white rounded-full"></span>
               )}
             </div>
           </Link>
 
-          <Link to="/customers" onClick={() => handlePageChange("customers")}>
+          {/* Customers */}
+
+          <Link to="/customers">
             <div className="f-col items-center gap-0.5" title="Customers">
               <UserGroupIcon
                 className={`w-6 text-white ${
-                  state.currentPage !== "customers" && nonActiveStyle
+                  currPage !== "customers" && nonActiveStyle
                 }`}
               />
-              {state.currentPage === "customers" && (
+              {currPage === "customers" && (
                 <span className="w-1 h-1 bg-white rounded-full"></span>
               )}
             </div>
           </Link>
 
-          <Link to="/products" onClick={() => handlePageChange("products")}>
+          {/* Products */}
+
+          <Link to="/products">
             <div className="f-col items-center gap-0.5" title="Products">
               <BuildingStorefrontIcon
                 className={`w-6 text-white ${
-                  state.currentPage !== "products" && nonActiveStyle
+                  currPage !== "products" && nonActiveStyle
                 }`}
               />
-              {state.currentPage === "products" && (
+              {currPage === "products" && (
                 <span className="w-1 h-1 bg-white rounded-full"></span>
               )}
             </div>
           </Link>
         </nav>
 
-        <Link to="/profile" onClick={() => handlePageChange("profile")}>
+        {/* Profile */}
+
+        <Link to="/profile">
           <div className="f-col items-center gap-0.5" title="Profile">
             <div
               className="w-7 h-7 bg-white text-brown rounded-full f-center"
@@ -94,7 +96,7 @@ const Navbar = () => {
             >
               J
             </div>
-            {state.currentPage === "profile" && (
+            {currPage === "profile" && (
               <span className="w-1 h-1 bg-white rounded-full"></span>
             )}
           </div>

@@ -4,6 +4,9 @@ import { useState } from "react";
 const Input = (props) => {
   const [visible, setVisible] = useState(false);
 
+  const inputStyle =
+    "w-full px-4 py-3 text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100";
+
   return (
     <div className="f-col text-brown gap-1">
       <label htmlFor={props.label} className="font-normal text-sm">
@@ -13,9 +16,11 @@ const Input = (props) => {
       {props.type === "password" ? (
         <div className="relative">
           <input
-            type={visible ? "text" : "password"}
             {...props}
-            className="w-full px-4 py-3 text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
+            type={visible ? "text" : "password"}
+            className={`${inputStyle} ${
+              props.disabled && "opacity-80 cursor-not-allowed"
+            }`}
           />
           <span
             className="w-4 absolute right-4 top-4 cursor-pointer"
@@ -27,11 +32,15 @@ const Input = (props) => {
       ) : (
         <input
           {...props}
-          className="w-full px-4 py-3 text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
+          className={`${inputStyle} ${
+            props.disabled && "opacity-80 cursor-not-allowed"
+          }`}
         />
       )}
 
-      <span className="text-xs text-error font-light">{props.error}</span>
+      <span className="text-xs md:text-sm text-error font-normal">
+        {props.error}
+      </span>
     </div>
   );
 };

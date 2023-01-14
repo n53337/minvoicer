@@ -4,8 +4,7 @@ import GlobalReducer from "./GlobalReducer";
 // Context Init
 
 const initValue = {
-  user: null,
-  currentPage: localStorage.getItem("currPage") || "dashboard",
+  user: localStorage.getItem("currUser") || null,
 };
 
 export const GlobalContext = createContext(initValue);
