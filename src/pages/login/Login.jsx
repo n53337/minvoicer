@@ -2,14 +2,18 @@ import { useState } from "react";
 import Input from "../../components/shared/Input";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase";
+import Loading from "../../components/shared/Loading";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: null, pwd: null });
+  const [isLoading, setIsLoading] = useState(false);
+
+  // ! Handle Login
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // ! Login Handle
+    setIsLoading(true);
 
     try {
       const auth = getAuth(app);
@@ -42,6 +46,7 @@ const Login = () => {
               label="Email"
               placeholder="name@email.com"
               required={true}
+              disabled={isLoading}
               error=""
               onChange={(e) =>
                 setLoginData({ ...loginData, email: e.target.value })
@@ -53,13 +58,27 @@ const Login = () => {
               label="Password"
               placeholder="6+ characters"
               required={true}
+              disabled={isLoading}
               error=""
               onChange={(e) =>
                 setLoginData({ ...loginData, pwd: e.target.value })
               }
             />
 
-            <button className="btn btn-primary py-4">Login</button>
+            <button
+              disabled={isLoading}
+              className={`btn btn-primary  f-center gap-2 ${
+                isLoading && "opacity-80 cursor-not-allowed"
+              } `}
+            >
+              {isLoading ? (
+                <>
+                  Login <Loading />
+                </>
+              ) : (
+                "Login"
+              )}
+            </button>
           </form>
         </div>
       </section>

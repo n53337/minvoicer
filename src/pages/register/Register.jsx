@@ -35,13 +35,13 @@ const Register = () => {
               error=""
             />
 
-            <button className="btn btn-primary py-4">Register</button>
+            <button className="btn btn-primary ">Register</button>
 
             <span className="p-4 text-center text-brown-500">
               Or register using
             </span>
 
-            <button className="btn btn-accent py-4 f-center gap-2">
+            <button className="btn btn-accent f-center gap-2">
               <img src={google} alt="google icon" className="w-4 lg:w-6" />
               <span>Sign in with google</span>
             </button>
