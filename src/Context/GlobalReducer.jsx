@@ -11,11 +11,12 @@ const GlobalReducer = (state, action) => {
     // * User State
 
     case "LOGIN": {
+      localStorage.setItem("currUser", JSON.stringify(action.payload));
       return { ...state, user: action.payload };
     }
 
     case "LOGOUT": {
-      localStorage.setItem("loggedIn", false);
+      localStorage.setItem("currUser", action.payload);
       return { ...state, user: null };
     }
 

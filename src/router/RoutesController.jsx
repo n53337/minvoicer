@@ -20,7 +20,11 @@ import { GlobalContext } from "../Context/GlobalContext";
 const RoutesController = ({}) => {
   //
 
-  const auth = useContext(GlobalContext);
+  const { state } = useContext(GlobalContext);
+
+  const auth = state.user;
+
+  console.log(auth);
 
   const RequireAuth = ({ children, navTo = "/register" }) => {
     return auth ? children : <Navigate to={navTo} />;
