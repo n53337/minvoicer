@@ -7,13 +7,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-import {
-  collection,
-  addDoc,
-  serverTimestamp,
-  doc,
-  setDoc,
-} from "firebase/firestore";
+import { serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/shared/Input";
 import Loading from "../../components/shared/Loading";
@@ -92,8 +86,6 @@ const Register = () => {
 
       const credential = GoogleAuthProvider.credentialFromResult(signReq);
 
-      console.log(credential);
-
       const userCredential = signReq.user;
 
       console.log(userCredential);
@@ -111,12 +103,12 @@ const Register = () => {
         name: userCredential.displayName,
         email: userCredential.email,
         pwd: null,
+        imgUrl: userCredential.photoURL,
       });
     } catch (error) {
       const email = error.customData.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.log(error.code);
-      console.log(email, credential);
     }
   };
 
@@ -129,8 +121,8 @@ const Register = () => {
         name: credentials.name,
         email: credentials.email,
         pwd: credentials.pwd,
+        imgUrl: credentials?.imgUrl,
       });
-      console.log("Document written ");
     } catch (error) {
       throw new Error(error);
     }
