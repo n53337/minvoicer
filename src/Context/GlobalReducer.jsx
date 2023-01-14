@@ -16,7 +16,7 @@ const GlobalReducer = (state, action) => {
     }
 
     case "LOGOUT": {
-      localStorage.setItem("currUser", action.payload);
+      localStorage.setItem("currUser", null);
       return { ...state, user: null };
     }
 
