@@ -1,28 +1,32 @@
 import { useState } from "react";
 import Input from "../../components/shared/Input";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "../../firebase";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: null, pwd: null });
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setLoginData({ emai: e.target[0].value, pwd: e.target[1].value });
+
+    // ! Login Handle
+
+    try {
+      const auth = getAuth(app);
+      const signReq = await signInWithEmailAndPassword(
+        auth,
+        loginData.email,
+        loginData.pwd
+      );
+
+      const userCredential = signReq.user.metadata;
+      console.log(userCredential);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      throw new Error(errorCode, errorMessage);
+    }
   };
-
-  // const auth = getAuth();
-  // signInWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-  //     // Signed in
-  //     const user = userCredential.user;
-  //     // ...
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //   });
-
-  console.log(loginData);
 
   return (
     <main className="f-center w-full max-h-screen bg-white px-6">
@@ -39,6 +43,9 @@ const Login = () => {
               placeholder="name@email.com"
               required={true}
               error=""
+              onChange={(e) =>
+                setLoginData({ ...loginData, email: e.target.value })
+              }
             />
 
             <Input
@@ -47,6 +54,9 @@ const Login = () => {
               placeholder="6+ characters"
               required={true}
               error=""
+              onChange={(e) =>
+                setLoginData({ ...loginData, pwd: e.target.value })
+              }
             />
 
             <button className="btn btn-primary py-4">Login</button>

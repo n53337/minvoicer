@@ -5,7 +5,6 @@ import { app } from "./firebase";
 
 function App() {
   const user = true;
-  console.log(app);
   return (
     <GlobalContextProvider>
       <RoutesController auth={user} />;
