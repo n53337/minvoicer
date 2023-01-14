@@ -203,7 +203,10 @@ const Register = () => {
             </span>
           </form>
           <button
-            className="btn btn-accent f-center gap-2"
+            className={`btn btn-accent f-center gap-2 ${
+              isLoading && "cursor-not-allowed"
+            }`}
+            disabled={isLoading}
             onClick={handleGoogleSignIn}
           >
             <img src={google} alt="google icon" className="w-4 lg:w-6" />
