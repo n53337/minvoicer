@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { GlobalContext } from "../../Context/GlobalContext";
-import { app } from "../../firebase";
+import { app, db } from "../../firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/shared/Input";
 import Loading from "../../components/shared/Loading";
@@ -16,14 +17,20 @@ const Register = () => {
     email: null,
     pwd: null,
   });
+
   const [isLoading, setIsLoading] = useState(false);
+
   const [registerError, setRegisterError] = useState(null);
+
   const { state, dispatch } = useContext(GlobalContext);
+
   const navigate = useNavigate();
 
   // Handle Register
 
   const handleSignUp = async (e) => {
+    //
+
     e.preventDefault();
 
     setRegisterError(null);
@@ -31,6 +38,8 @@ const Register = () => {
     setIsLoading(true);
 
     try {
+      // User Auth
+
       const auth = getAuth(app);
       const signReq = await createUserWithEmailAndPassword(
         auth,
@@ -39,6 +48,8 @@ const Register = () => {
       );
 
       const userCredential = signReq.user;
+
+      // set current User
 
       dispatch({
         type: "REGISTER",
@@ -49,11 +60,27 @@ const Register = () => {
 
       navigate("/dashboard");
 
-      console.log(userCredential);
+      await addUserToDb();
     } catch (error) {
       setRegisterError(errorHandler(error.code));
       setIsLoading(false);
       throw new Error(error.code);
+    }
+  };
+
+  // Add New user to DB
+
+  const addUserToDb = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        createdAt: serverTimestamp(),
+        name: registerData.name,
+        email: registerData.email,
+        pwd: registerData.pwd,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+      throw new Error(error);
     }
   };
 

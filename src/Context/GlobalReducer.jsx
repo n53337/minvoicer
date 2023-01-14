@@ -9,6 +9,11 @@ const GlobalReducer = (state, action) => {
       return { ...state, user: action.payload };
     }
 
+    case "REGISTER": {
+      localStorage.setItem("currUser", JSON.stringify(action.payload));
+      return { ...state, user: action.payload };
+    }
+
     case "LOGOUT": {
       localStorage.setItem("currUser", null);
       return { ...state, user: null };
