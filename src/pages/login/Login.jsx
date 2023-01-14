@@ -11,12 +11,14 @@ const Login = () => {
 
   const [loginData, setLoginData] = useState({ email: null, pwd: null });
   const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState(null);
   const { state, dispatch } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   // Handle Login
 
   const handleLogin = async (e) => {
+    setLoginError(null);
     e.preventDefault();
 
     setIsLoading(true);
@@ -44,9 +46,9 @@ const Login = () => {
 
       // Error Handling
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      throw new Error(errorCode, errorMessage);
+      setLoginError("email or password is incorrect, Please try again later.");
+      setIsLoading(false);
+      throw new Error("Login Error");
     }
   };
 
@@ -77,7 +79,7 @@ const Login = () => {
               placeholder="6+ characters"
               required={true}
               disabled={isLoading}
-              error=""
+              error={loginError && loginError}
               onChange={(e) =>
                 setLoginData({ ...loginData, pwd: e.target.value })
               }
