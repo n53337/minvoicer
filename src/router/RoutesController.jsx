@@ -14,8 +14,14 @@ import NewCustomer from "../pages/customers/NewCustomer";
 import EditCustomer from "../pages/customers/EditCustomer";
 import Profile from "../pages/profile/Profile";
 import NotFound from "../pages/404/NotFound";
+import { useContext } from "react";
+import { GlobalContext } from "../Context/GlobalContext";
 
-const RoutesController = ({ auth }) => {
+const RoutesController = ({}) => {
+  //
+
+  const auth = useContext(GlobalContext);
+
   const RequireAuth = ({ children, navTo = "/register" }) => {
     return auth ? children : <Navigate to={navTo} />;
   };

@@ -1,14 +1,20 @@
-import { useState } from "react";
-import Input from "../../components/shared/Input";
+import { useContext, useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase";
+import { GlobalContext } from "../../Context/GlobalContext";
+import Input from "../../components/shared/Input";
 import Loading from "../../components/shared/Loading";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  //
+
   const [loginData, setLoginData] = useState({ email: null, pwd: null });
   const [isLoading, setIsLoading] = useState(false);
+  const { state, dispatch } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
-  // ! Handle Login
+  // Handle Login
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,8 +29,20 @@ const Login = () => {
         loginData.pwd
       );
 
-      const userCredential = signReq.user.metadata;
-      console.log(userCredential);
+      const userCredential = signReq.user;
+
+      // set current User
+
+      dispatch({
+        type: "LOGIN",
+        payload: { email: userCredential.email, id: userCredential.uid },
+      });
+
+      // Redirect to Dashboard
+
+      navigate("/dashboard");
+
+      // Error Handling
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
