@@ -4,7 +4,6 @@ import { getFirestore } from "firebase/firestore";
 // Firebase Config
 
 const firebaseConfig = {
-  // apiKey: "AIzaSyB5-fIbY5oStv9hQZf47Gb8cIim14DLeuw",
   apiKey: import.meta.env.VITE_API_KEY || "mock_key",
   authDomain: "minvoicer0.firebaseapp.com",
   projectId: "minvoicer0",

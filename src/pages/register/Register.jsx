@@ -1,8 +1,19 @@
 import { useState, useContext } from "react";
 import { GlobalContext } from "../../Context/GlobalContext";
 import { app, db } from "../../firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/shared/Input";
 import Loading from "../../components/shared/Loading";
@@ -26,6 +37,8 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  const auth = getAuth(app);
+
   // Handle Register
 
   const handleSignUp = async (e) => {
@@ -40,7 +53,6 @@ const Register = () => {
     try {
       // User Auth
 
-      const auth = getAuth(app);
       const signReq = await createUserWithEmailAndPassword(
         auth,
         registerData.email,
@@ -60,7 +72,7 @@ const Register = () => {
 
       navigate("/dashboard");
 
-      await addUserToDb();
+      await addUserToDb(userCredential.uid);
     } catch (error) {
       setRegisterError(errorHandler(error.code));
       setIsLoading(false);
@@ -68,21 +80,48 @@ const Register = () => {
     }
   };
 
+  // Google Sign in
+
+  const handleGoogleSignIn = async () => {
+    //
+
+    try {
+      const googleProvider = new GoogleAuthProvider();
+
+      const signReq = await signInWithPopup(auth, googleProvider);
+
+      const credential = GoogleAuthProvider.credentialFromResult(signReq);
+
+      const token = credential.accessToken;
+
+      const user = signReq.user;
+
+      console.log(user);
+    } catch (error) {
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(error.code);
+      console.log(email, credential);
+    }
+  };
+
   // Add New user to DB
 
-  const addUserToDb = async () => {
+  const addUserToDb = async (uid) => {
     try {
-      const docRef = await addDoc(collection(db, "users"), {
+      const docRef = await setDoc(doc(db, "users", uid), {
         createdAt: serverTimestamp(),
         name: registerData.name,
         email: registerData.email,
         pwd: registerData.pwd,
       });
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Document written ");
     } catch (error) {
       throw new Error(error);
     }
   };
+
+  // Layout
 
   return (
     <main className="f-center w-full max-h-screen bg-white px-6">
@@ -147,12 +186,14 @@ const Register = () => {
             <span className="p-4 text-center text-brown-500">
               Or register using
             </span>
-
-            <button className="btn btn-accent f-center gap-2">
-              <img src={google} alt="google icon" className="w-4 lg:w-6" />
-              <span>Sign in with google</span>
-            </button>
           </form>
+          <button
+            className="btn btn-accent f-center gap-2"
+            onClick={handleGoogleSignIn}
+          >
+            <img src={google} alt="google icon" className="w-4 lg:w-6" />
+            <span>Sign in with google</span>
+          </button>
         </div>
       </section>
     </main>

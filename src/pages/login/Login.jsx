@@ -11,9 +11,13 @@ const Login = () => {
   //
 
   const [loginData, setLoginData] = useState({ email: null, pwd: null });
+
   const [isLoading, setIsLoading] = useState(false);
+
   const [loginError, setLoginError] = useState(null);
+
   const { state, dispatch } = useContext(GlobalContext);
+
   const navigate = useNavigate();
 
   // Handle Login
