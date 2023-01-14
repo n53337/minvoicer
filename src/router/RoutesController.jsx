@@ -20,12 +20,18 @@ import { GlobalContext } from "../Context/GlobalContext";
 const RoutesController = ({}) => {
   //
 
+  // User Authentication
+
   const { state } = useContext(GlobalContext);
 
   const auth = state.user;
 
   const RequireAuth = ({ children, navTo = "/register" }) => {
     return auth ? children : <Navigate to={navTo} />;
+  };
+
+  const LoggedIn = ({ children, navTo = "/dashboard" }) => {
+    return !auth ? children : <Navigate to={navTo} />;
   };
 
   return (
@@ -35,11 +41,32 @@ const RoutesController = ({}) => {
 
         {/* ---- Public Routes */}
 
-        <Route index element={<Home />} />
+        <Route
+          index
+          element={
+            <LoggedIn>
+              <Home />
+            </LoggedIn>
+          }
+        />
 
-        <Route path="register" element={<Register />} />
+        <Route
+          path="register"
+          element={
+            <LoggedIn>
+              <Register />
+            </LoggedIn>
+          }
+        />
 
-        <Route path="login" element={<Login />} />
+        <Route
+          path="login"
+          element={
+            <LoggedIn>
+              <Login />
+            </LoggedIn>
+          }
+        />
 
         {/* ---- Protected Routes ---- */}
 

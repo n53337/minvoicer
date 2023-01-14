@@ -5,7 +5,6 @@ import GlobalReducer from "./GlobalReducer";
 
 const initValue = {
   user: localStorage.getItem("currUser") || null,
-  currentPage: localStorage.getItem("currPage") || "dashboard",
 };
 
 export const GlobalContext = createContext(initValue);
