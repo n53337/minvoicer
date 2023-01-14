@@ -72,7 +72,7 @@ const Register = () => {
 
       navigate("/dashboard");
 
-      await addUserToDb(userCredential.uid);
+      await addUserToDb(userCredential.uid, registerData);
     } catch (error) {
       setRegisterError(errorHandler(error.code));
       setIsLoading(false);
@@ -92,11 +92,26 @@ const Register = () => {
 
       const credential = GoogleAuthProvider.credentialFromResult(signReq);
 
-      const token = credential.accessToken;
+      console.log(credential);
 
-      const user = signReq.user;
+      const userCredential = signReq.user;
 
-      console.log(user);
+      console.log(userCredential);
+
+      dispatch({
+        type: "REGISTER",
+        payload: { email: userCredential.email, id: userCredential.uid },
+      });
+
+      // Redirect to Dashboard
+
+      navigate("/dashboard");
+
+      await addUserToDb(userCredential.uid, {
+        name: userCredential.displayName,
+        email: userCredential.email,
+        pwd: null,
+      });
     } catch (error) {
       const email = error.customData.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
@@ -107,13 +122,13 @@ const Register = () => {
 
   // Add New user to DB
 
-  const addUserToDb = async (uid) => {
+  const addUserToDb = async (uid, credentials) => {
     try {
       const docRef = await setDoc(doc(db, "users", uid), {
         createdAt: serverTimestamp(),
-        name: registerData.name,
-        email: registerData.email,
-        pwd: registerData.pwd,
+        name: credentials.name,
+        email: credentials.email,
+        pwd: credentials.pwd,
       });
       console.log("Document written ");
     } catch (error) {
