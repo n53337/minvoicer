@@ -38,7 +38,9 @@ const Input = (props) => {
         />
       )}
 
-      <span className="text-xs text-error font-light">{props.error}</span>
+      <span className="text-xs md:text-sm text-error font-normal">
+        {props.error}
+      </span>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../firebase";
 import { GlobalContext } from "../../Context/GlobalContext";
+import { app } from "../../firebase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/shared/Input";
 import Loading from "../../components/shared/Loading";
-import { redirect, useNavigate } from "react-router-dom";
+import errorHandler from "../../utils/errorHandler";
 
 const Login = () => {
   //
@@ -18,8 +19,9 @@ const Login = () => {
   // Handle Login
 
   const handleLogin = async (e) => {
-    setLoginError(null);
     e.preventDefault();
+
+    setLoginError(null);
 
     setIsLoading(true);
 
@@ -46,7 +48,7 @@ const Login = () => {
 
       // Error Handling
     } catch (error) {
-      setLoginError("email or password is incorrect, Please try again later.");
+      setLoginError(errorHandler(error.code));
       setIsLoading(false);
       throw new Error("Login Error");
     }
@@ -79,7 +81,7 @@ const Login = () => {
               placeholder="6+ characters"
               required={true}
               disabled={isLoading}
-              error={loginError && loginError}
+              error={loginError}
               onChange={(e) =>
                 setLoginData({ ...loginData, pwd: e.target.value })
               }

@@ -1,20 +1,60 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../Context/GlobalContext";
+import { app } from "../../firebase";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/shared/Input";
 import Loading from "../../components/shared/Loading";
 import google from "../../assets/icons/Google.svg";
+import errorHandler from "../../utils/errorHandler";
 
 const Register = () => {
   //
 
-  const [registerData, setRegisterData] = useState({ email: null, pwd: null });
+  const [registerData, setRegisterData] = useState({
+    name: null,
+    email: null,
+    pwd: null,
+  });
   const [isLoading, setIsLoading] = useState(false);
+  const [registerError, setRegisterError] = useState(null);
   const { state, dispatch } = useContext(GlobalContext);
   const navigate = useNavigate();
 
+  // Handle Register
+
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    setRegisterError(null);
+
+    setIsLoading(true);
+
+    try {
+      const auth = getAuth(app);
+      const signReq = await createUserWithEmailAndPassword(
+        auth,
+        registerData.email,
+        registerData.pwd
+      );
+
+      const userCredential = signReq.user;
+
+      // dispatch({
+      //   type: "LOGIN",
+      //   payload: { email: userCredential.email, id: userCredential.uid },
+      // });
+
+      // // Redirect to Dashboard
+
+      // navigate("/dashboard");
+
+      console.log(userCredential);
+    } catch (error) {
+      setRegisterError(errorHandler(error.code));
+      setIsLoading(false);
+      throw new Error(error.code);
+    }
   };
 
   return (
@@ -31,7 +71,11 @@ const Register = () => {
               label="Name"
               placeholder="Enter your name"
               required={true}
+              disabled={isLoading}
               error=""
+              onChange={(e) => {
+                setRegisterData({ ...registerData, name: e.target.value });
+              }}
             />
 
             <Input
@@ -39,7 +83,11 @@ const Register = () => {
               label="Email"
               placeholder="name@email.com"
               required={true}
+              disabled={isLoading}
               error=""
+              onChange={(e) => {
+                setRegisterData({ ...registerData, email: e.target.value });
+              }}
             />
 
             <Input
@@ -47,10 +95,27 @@ const Register = () => {
               label="Password"
               placeholder="6+ characters"
               required={true}
-              error=""
+              disabled={isLoading}
+              error={registerError}
+              onChange={(e) => {
+                setRegisterData({ ...registerData, pwd: e.target.value });
+              }}
             />
 
-            <button className="btn btn-primary ">Register</button>
+            <button
+              disabled={isLoading}
+              className={`btn btn-primary  f-center gap-2 ${
+                isLoading && "opacity-80 cursor-not-allowed"
+              } `}
+            >
+              {isLoading ? (
+                <>
+                  Register <Loading />
+                </>
+              ) : (
+                "Register"
+              )}
+            </button>
 
             <span className="p-4 text-center text-brown-500">
               Or register using
