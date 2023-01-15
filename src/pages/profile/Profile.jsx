@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { GlobalContext } from "../../Context/GlobalContext";
 import CustomerForm from "../../components/shared/CustomerForm";
 import AppSkeleton from "../../components/shared/AppSkeleton";
-import { GlobalContext } from "../../Context/GlobalContext";
 
 const Profile = () => {
   const { state, dispatch } = useContext(GlobalContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
 
   return (
     <AppSkeleton
@@ -22,7 +29,12 @@ const Profile = () => {
       <div className="w-full h-full md:f-col items-center justify-center gap-10 ">
         <CustomerForm data={"user"} />
         <div className="f-center">
-          <button className="btn btn-accent mt-4 md:mt-0">Logout</button>
+          <button
+            className="btn btn-accent mt-4 md:mt-0"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </AppSkeleton>
