@@ -1,4 +1,6 @@
 const GlobalReducer = (state, action) => {
+  //
+
   switch (action.type) {
     //
 
@@ -17,10 +19,6 @@ const GlobalReducer = (state, action) => {
     case "LOGOUT": {
       localStorage.setItem("currUser", "");
       return { ...state, user: null };
-    }
-
-    case "UPDATE": {
-      return { ...state, user: { ...state.user, ...action.payload } };
     }
 
     default:

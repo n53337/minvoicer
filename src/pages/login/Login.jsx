@@ -41,7 +41,7 @@ const Login = () => {
 
       // set current User
 
-      dispatch({
+      await dispatch({
         type: "LOGIN",
         payload: { email: userCredential.email, id: userCredential.uid },
       });

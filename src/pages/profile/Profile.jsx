@@ -13,36 +13,34 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  // Fetch User Data
+  // useEffect(() => {
+  //   let mounted = true;
 
-  useEffect(() => {
-    let mounted = true;
+  //   const fetchUserData = async () => {
+  //     const docRef = doc(db, "users", state.user.id);
+  //     console.log("mounted");
 
-    const fetchUserData = async () => {
-      const docRef = doc(db, "users", state.user.id);
-      console.log("mounted");
+  //     const docSnap = await getDoc(docRef);
 
-      const docSnap = await getDoc(docRef);
+  //     if (docSnap.exists()) {
+  //       if (mounted) {
+  //         console.log(docSnap.data());
+  //         setDataTest({ ...dataTest, ...docSnap.data() });
+  //       }
+  //     } else {
+  //       console.log("No such document!");
+  //     }
+  //   };
 
-      if (docSnap.exists()) {
-        if (mounted) {
-          console.log(docSnap.data());
-          setDataTest({ ...dataTest, ...docSnap.data() });
-        }
-      } else {
-        console.log("No such document!");
-      }
-    };
+  //   fetchUserData();
 
-    fetchUserData();
+  //   // Clean up
 
-    // Clean up
-
-    return () => {
-      console.log("unmounted");
-      mounted = false;
-    };
-  }, []);
+  //   return () => {
+  //     console.log("unmounted");
+  //     mounted = false;
+  //   };
+  // }, []);
 
   // Logout
 
