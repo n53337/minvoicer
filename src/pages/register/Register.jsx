@@ -88,8 +88,6 @@ const Register = () => {
 
       const userCredential = signReq.user;
 
-      console.log(userCredential);
-
       dispatch({
         type: "REGISTER",
         payload: { email: userCredential.email, id: userCredential.uid },

@@ -19,6 +19,10 @@ const GlobalReducer = (state, action) => {
       return { ...state, user: null };
     }
 
+    case "UPDATE": {
+      return { ...state, user: { ...state.user, ...action.payload } };
+    }
+
     default:
       return state;
   }
