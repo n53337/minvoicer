@@ -1,9 +1,7 @@
 import AppSkeleton from "../../components/shared/AppSkeleton";
 import Card from "../../components/Dashboard/Card";
 import Chart from "../../components/Dashboard/Chart";
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../../Context/GlobalContext";
 import {
   CurrencyDollarIcon,
@@ -11,34 +9,18 @@ import {
   BuildingStorefrontIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
+import fetchUserData from "../../utils/fetchUserData";
 
 const Dashboard = () => {
   const { state, dispatch } = useContext(GlobalContext);
 
-  const [test, setTest] = useState();
+  const [userData, setUserData] = useState();
 
   // Fetch User Data
 
-  const fetchUser = async (id) => {
-    const docRef = doc(db, "users", id);
-
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      // console.log(docSnap.data());
-      setTest(docSnap.data());
-    } else {
-      console.log("No such document!");
-    }
-  };
-
   useEffect(() => {
-    fetchUser(state.user.id, setTest);
+    fetchUserData(state.user.id, setUserData);
   }, []);
-  console.log(test);
-
-  console.log(state.user.email);
 
   return (
     <AppSkeleton title="Dashboard">
@@ -46,7 +28,7 @@ const Dashboard = () => {
         <div className="f-evenly gap-y-4 flex-wrap">
           <Card
             label="Revenue"
-            value={test ? test.pwd : "loading..."}
+            value={userData ? userData.pwd : "loading..."}
             icon={<CurrencyDollarIcon className="w-4 md:w-6 text-brown" />}
           />
           <Card
