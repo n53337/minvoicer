@@ -1,53 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../Context/GlobalContext";
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
 import CustomerForm from "../../components/shared/CustomerForm";
 import AppSkeleton from "../../components/shared/AppSkeleton";
 
 const Profile = () => {
   const { state, dispatch } = useContext(GlobalContext);
-
-  const [dataTest, setDataTest] = useState(state.user);
-
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   let mounted = true;
-
-  //   const fetchUserData = async () => {
-  //     const docRef = doc(db, "users", state.user.id);
-  //     console.log("mounted");
-
-  //     const docSnap = await getDoc(docRef);
-
-  //     if (docSnap.exists()) {
-  //       if (mounted) {
-  //         console.log(docSnap.data());
-  //         setDataTest({ ...dataTest, ...docSnap.data() });
-  //       }
-  //     } else {
-  //       console.log("No such document!");
-  //     }
-  //   };
-
-  //   fetchUserData();
-
-  //   // Clean up
-
-  //   return () => {
-  //     console.log("unmounted");
-  //     mounted = false;
-  //   };
-  // }, []);
-
-  // Logout
-
-  const handleLogout = () => {
-    dispatch({ type: "LOGOUT" });
-    navigate("/login");
-  };
 
   return (
     <AppSkeleton
