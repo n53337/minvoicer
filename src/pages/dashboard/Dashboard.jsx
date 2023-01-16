@@ -22,36 +22,47 @@ const Dashboard = () => {
     fetchUserData(state.user.id, setUserData);
   }, []);
 
+  // console.log(userData);
   return (
-    <AppSkeleton title="Dashboard">
-      <div className="w-full h-full f-col py-6 gap-8 md:gap-4 justify-around ">
-        <div className="f-evenly gap-y-4 flex-wrap">
-          <Card
-            label="Revenue"
-            value={userData ? userData.pwd : "loading..."}
-            icon={<CurrencyDollarIcon className="w-4 md:w-6 text-brown" />}
-          />
-          <Card
-            label="Customers"
-            value="173"
-            icon={<UserGroupIcon className="w-4 md:w-6 text-brown" />}
-          />
-          <Card
-            label="Products"
-            value="06"
-            icon={<BuildingStorefrontIcon className="w-4 md:w-6 text-brown" />}
-          />
-          <Card
-            label="Invoices"
-            value="32"
-            icon={<DocumentDuplicateIcon className="w-4 md:w-6 text-brown" />}
-          />
+    <AppSkeleton title={``}>
+      {!userData ? (
+        <div className="w-full h-full f-center">
+          <p className="animate-pulse text-brown-700 font-normal text-lg md:text-3xl">
+            loading...
+          </p>
         </div>
+      ) : (
+        <div className="w-full h-full f-col py-6 gap-8 md:gap-4 justify-around ">
+          <div className="f-evenly gap-y-4 flex-wrap">
+            <Card
+              label="Revenue"
+              value={userData ? userData.pwd : "loading..."}
+              icon={<CurrencyDollarIcon className="w-4 md:w-6 text-brown" />}
+            />
+            <Card
+              label="Customers"
+              value="173"
+              icon={<UserGroupIcon className="w-4 md:w-6 text-brown" />}
+            />
+            <Card
+              label="Products"
+              value="06"
+              icon={
+                <BuildingStorefrontIcon className="w-4 md:w-6 text-brown" />
+              }
+            />
+            <Card
+              label="Invoices"
+              value="32"
+              icon={<DocumentDuplicateIcon className="w-4 md:w-6 text-brown" />}
+            />
+          </div>
 
-        <div className="f-center">
-          <Chart />
+          <div className="f-center">
+            <Chart />
+          </div>
         </div>
-      </div>
+      )}
     </AppSkeleton>
   );
 };

@@ -8,6 +8,7 @@ const fetchUserData = async (id, setter) => {
 
   if (docSnap.exists()) {
     setter(docSnap.data());
+    return docSnap.data();
   } else {
     console.log("No such document!");
   }
