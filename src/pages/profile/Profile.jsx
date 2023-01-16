@@ -1,18 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { GlobalContext } from "../../Context/GlobalContext";
 import CustomerForm from "../../components/shared/CustomerForm";
 import AppSkeleton from "../../components/shared/AppSkeleton";
 
 const Profile = () => {
   const { state, dispatch } = useContext(GlobalContext);
-
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    dispatch({ type: "LOGOUT" });
-    navigate("/login");
-  };
 
   return (
     <AppSkeleton

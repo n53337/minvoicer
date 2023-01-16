@@ -24,7 +24,7 @@ const RoutesController = ({}) => {
 
   const { state } = useContext(GlobalContext);
 
-  const auth = state.user;
+  const auth = state?.user?.email;
 
   const RequireAuth = ({ children, navTo = "/register" }) => {
     return auth ? children : <Navigate to={navTo} />;

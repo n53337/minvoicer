@@ -4,7 +4,10 @@ import GlobalReducer from "./GlobalReducer";
 // Context Init
 
 const initValue = {
-  user: localStorage.getItem("currUser") || null,
+  user:
+    (localStorage.getItem("currUser") &&
+      JSON.parse(localStorage.getItem("currUser"))) ||
+    null,
 };
 
 export const GlobalContext = createContext(initValue);
