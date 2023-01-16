@@ -18,8 +18,6 @@ export const fetchUserProfile = async (id, setter) => {
 // * Fetch Invoices
 
 export const fetchInvoices = async (id, setter) => {
-  // const docRef = doc(db, `users/${id}/invoices`);
-
   const docsSnap = await getDocs(collection(db, `users/${id}/invoices`));
   const invoices = [];
   docsSnap.forEach((doc) => {
@@ -28,11 +26,7 @@ export const fetchInvoices = async (id, setter) => {
     } else {
       console.log("No such document!");
     }
-    // console.log(doc.id, doc.data());
   });
 
   setter(invoices);
-
-  // setter(docsSnap.data());
-  // console.log(docsSnap.docs);
 };

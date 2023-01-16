@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import InvoiceRow from "../../components/Invoices/InvoiceRow";
 import AppSkeleton from "../../components/shared/AppSkeleton";
+import { LoadingScreen } from "../../components/shared/Loading";
 import Table from "../../components/shared/Table";
 import { GlobalContext } from "../../Context/GlobalContext";
 import { fetchInvoices } from "../../utils/fetchData";
@@ -25,32 +26,6 @@ const Invoices = () => {
     fetchInvoices(state.user.id, setInvoices);
   }, []);
 
-  console.log(invoices);
-
-  const tableData = [
-    {
-      id: "10",
-      date: "03 Jan 2023",
-      to: "John Doe",
-      amount: 49.0,
-      status: "paid",
-    },
-    {
-      id: "20",
-      date: "04 Jan 2023",
-      to: "Jonhatan",
-      amount: 900.0,
-      status: "pending",
-    },
-    {
-      id: "30",
-      date: "03 Jan 2023",
-      to: "Marya Doe",
-      amount: 549.0,
-      status: "paid",
-    },
-  ];
-
   return (
     <AppSkeleton
       title="Invoices"
@@ -63,11 +38,16 @@ const Invoices = () => {
         ),
       }}
     >
-      <div className="max-h-full overflow-auto">
-        <Table tableHead={tableHead}>
-          <InvoiceRow data={tableData} />
-        </Table>
-      </div>
+      {!invoices ? (
+        <LoadingScreen />
+      ) : (
+        <div className="max-h-full overflow-auto">
+          <Table tableHead={tableHead}>
+            {/* <InvoiceRow data={tableData} /> */}
+            <InvoiceRow data={invoices} />
+          </Table>
+        </div>
+      )}
     </AppSkeleton>
   );
 };

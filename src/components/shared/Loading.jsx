@@ -5,9 +5,11 @@ export const LoadingIcon = () => {
 };
 
 export const LoadingScreen = () => {
-  <div className="w-full h-full f-center">
-    <p className="animate-pulse text-brown-700 font-normal text-lg md:text-3xl">
-      loading...
-    </p>
-  </div>;
+  return (
+    <div className="w-full h-full f-center">
+      <p className="animate-pulse text-brown-700 font-normal text-lg md:text-3xl">
+        loading...
+      </p>
+    </div>
+  );
 };

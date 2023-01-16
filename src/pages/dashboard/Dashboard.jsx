@@ -10,6 +10,7 @@ import {
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
 import { fetchUserProfile } from "../../utils/fetchData";
+import { LoadingScreen } from "../../components/shared/Loading";
 
 const Dashboard = () => {
   const { state } = useContext(GlobalContext);
@@ -27,11 +28,7 @@ const Dashboard = () => {
   return (
     <AppSkeleton title={userData && `Hey, ${userData.name}`}>
       {!userData ? (
-        <div className="w-full h-full f-center">
-          <p className="animate-pulse text-brown-700 font-normal text-lg md:text-3xl">
-            loading...
-          </p>
-        </div>
+        <LoadingScreen />
       ) : (
         <div className="w-full h-full f-col py-6 gap-8 md:gap-4 justify-around ">
           <div className="f-evenly gap-y-4 flex-wrap">
