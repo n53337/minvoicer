@@ -48,17 +48,15 @@ const Register = () => {
         name: credentials.name,
         email: credentials.email,
         pwd: credentials.pwd,
-        // imgUrl: credentials?.imgUrl,
+        imgUrl: credentials?.imgUrl || null,
       });
 
-      // Coll
+      // Add Invoice
 
-      const colRef = await addDoc(collection(db, `users/${uid}/invoices`), {
-        createdAt: serverTimestamp(),
-        invoice: "hey hh",
-      });
-      console.log(docRef);
-      console.log(colRef);
+      // const colRef = await addDoc(collection(db, `users/${uid}/invoices`), {
+      //   createdAt: serverTimestamp(),
+      //   invoice: "hey hh",
+      // });
     } catch (error) {
       console.log(error);
     }

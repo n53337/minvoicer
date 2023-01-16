@@ -19,12 +19,14 @@ const Dashboard = () => {
   // Fetch User Data
 
   useEffect(() => {
-    // fetchUserData(state.user.id, setUserData);
+    fetchUserData(state.user.id, setUserData);
   }, []);
+
+  // console.log(userData);
 
   return (
     <AppSkeleton title={userData && `Hey, ${userData.name}`}>
-      {userData ? (
+      {!userData ? (
         <div className="w-full h-full f-center">
           <p className="animate-pulse text-brown-700 font-normal text-lg md:text-3xl">
             loading...
