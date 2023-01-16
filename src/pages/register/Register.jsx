@@ -23,6 +23,8 @@ import errorHandler from "../../utils/errorHandler";
 const Register = () => {
   //
 
+  const { state, dispatch } = useContext(GlobalContext);
+
   const [registerData, setRegisterData] = useState({
     name: null,
     email: null,
@@ -32,8 +34,6 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [registerError, setRegisterError] = useState(null);
-
-  const { state, dispatch } = useContext(GlobalContext);
 
   const navigate = useNavigate();
 

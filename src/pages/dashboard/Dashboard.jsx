@@ -9,7 +9,7 @@ import {
   BuildingStorefrontIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
-import fetchUserData from "../../utils/fetchUserData";
+import { fetchUserProfile } from "../../utils/fetchData";
 
 const Dashboard = () => {
   const { state } = useContext(GlobalContext);
@@ -19,7 +19,7 @@ const Dashboard = () => {
   // Fetch User Data
 
   useEffect(() => {
-    fetchUserData(state.user.id, setUserData);
+    fetchUserProfile(state.user.id, setUserData);
   }, []);
 
   // console.log(userData);
