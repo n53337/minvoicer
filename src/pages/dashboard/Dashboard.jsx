@@ -12,7 +12,7 @@ import {
 import fetchUserData from "../../utils/fetchUserData";
 
 const Dashboard = () => {
-  const { state, dispatch } = useContext(GlobalContext);
+  const { state } = useContext(GlobalContext);
 
   const [userData, setUserData] = useState();
 
@@ -37,24 +37,24 @@ const Dashboard = () => {
           <div className="f-evenly gap-y-4 flex-wrap">
             <Card
               label="Revenue"
-              value={userData ? userData.pwd : "loading..."}
+              value={userData && `$${userData.summary.revenue}`}
               icon={<CurrencyDollarIcon className="w-4 md:w-6 text-brown" />}
             />
             <Card
               label="Customers"
-              value="173"
+              value={userData && userData.summary.customers}
               icon={<UserGroupIcon className="w-4 md:w-6 text-brown" />}
             />
             <Card
               label="Products"
-              value="06"
+              value={userData && userData.summary.products}
               icon={
                 <BuildingStorefrontIcon className="w-4 md:w-6 text-brown" />
               }
             />
             <Card
               label="Invoices"
-              value="32"
+              value={userData && userData.summary.invoices}
               icon={<DocumentDuplicateIcon className="w-4 md:w-6 text-brown" />}
             />
           </div>

@@ -8,7 +8,7 @@ const InvoiceOverview = () => {
       title={
         <select
           id="status"
-          className=" text-base p-2 border border-brown rounded-md outline-brown text-brown bg-white"
+          className=" text-base p-1 md:p-2 border border-brown rounded-md outline-brown text-brown bg-white"
         >
           <option value="paid">Paid</option>
           <option value="pending">Pending</option>
