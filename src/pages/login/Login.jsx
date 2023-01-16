@@ -4,7 +4,7 @@ import { app } from "../../firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/shared/Input";
-import Loading from "../../components/shared/Loading";
+import { LoadingIcon } from "../../components/shared/Loading";
 import errorHandler from "../../utils/errorHandler";
 
 const Login = () => {
@@ -99,7 +99,7 @@ const Login = () => {
             >
               {isLoading ? (
                 <>
-                  Login <Loading />
+                  Login <LoadingIcon />
                 </>
               ) : (
                 "Login"

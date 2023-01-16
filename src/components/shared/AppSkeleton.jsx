@@ -6,7 +6,7 @@ const AppSkeleton = ({ children, title, utils }) => {
       <section className="w-full h-full bg-white flex flex-col-reverse md:flex-row">
         <AppNavbar />
         <div className="w-full h-full px-2 py-4 f-col gap-1 overflow-auto mb-24">
-          <aside className="f-between items-center">
+          <aside className="f-between items-center pt-8 pl-8">
             <h2>{title}</h2>
 
             {utils && (

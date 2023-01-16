@@ -7,10 +7,16 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-import { serverTimestamp, doc, setDoc } from "firebase/firestore";
+import {
+  serverTimestamp,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/shared/Input";
-import Loading from "../../components/shared/Loading";
+import { LoadingIcon } from "../../components/shared/Loading";
 import google from "../../assets/icons/Google.svg";
 import errorHandler from "../../utils/errorHandler";
 
@@ -32,6 +38,31 @@ const Register = () => {
   const navigate = useNavigate();
 
   const auth = getAuth(app);
+
+  // Add New user to DB
+
+  const addUserToDb = async (uid, credentials) => {
+    try {
+      const docRef = await setDoc(doc(db, "users", uid), {
+        createdAt: serverTimestamp(),
+        name: credentials.name,
+        email: credentials.email,
+        pwd: credentials.pwd,
+        // imgUrl: credentials?.imgUrl,
+      });
+
+      // Coll
+
+      const colRef = await addDoc(collection(db, `users/${uid}/invoices`), {
+        createdAt: serverTimestamp(),
+        invoice: "hey hh",
+      });
+      console.log(docRef);
+      console.log(colRef);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // Handle Register
 
@@ -70,7 +101,7 @@ const Register = () => {
     } catch (error) {
       setRegisterError(errorHandler(error.code));
       setIsLoading(false);
-      throw new Error(error.code);
+      console.log(error);
     }
   };
 
@@ -107,22 +138,6 @@ const Register = () => {
       const email = error.customData.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.log(error.code);
-    }
-  };
-
-  // Add New user to DB
-
-  const addUserToDb = async (uid, credentials) => {
-    try {
-      const docRef = await setDoc(doc(db, "users", uid), {
-        createdAt: serverTimestamp(),
-        name: credentials.name,
-        email: credentials.email,
-        pwd: credentials.pwd,
-        imgUrl: credentials?.imgUrl,
-      });
-    } catch (error) {
-      throw new Error(error);
     }
   };
 
@@ -181,7 +196,7 @@ const Register = () => {
             >
               {isLoading ? (
                 <>
-                  Register <Loading />
+                  Register <LoadingIcon />
                 </>
               ) : (
                 "Register"
