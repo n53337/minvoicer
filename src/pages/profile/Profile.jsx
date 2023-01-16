@@ -1,10 +1,25 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
 import CustomerForm from "../../components/shared/CustomerForm";
 import AppSkeleton from "../../components/shared/AppSkeleton";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../../Context/GlobalContext";
+import { fetchUserProfile } from "../../utils/fetchData";
 
 const Profile = () => {
   const { state, dispatch } = useContext(GlobalContext);
+
+  const [userProfile, setUserProfile] = useState();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchUserProfile(state.user.id, setUserProfile);
+  }, []);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
 
   return (
     <AppSkeleton
