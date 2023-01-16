@@ -43,7 +43,6 @@ const Invoices = () => {
       ) : (
         <div className="max-h-full overflow-auto">
           <Table tableHead={tableHead}>
-            {/* <InvoiceRow data={tableData} /> */}
             <InvoiceRow data={invoices} />
           </Table>
         </div>
