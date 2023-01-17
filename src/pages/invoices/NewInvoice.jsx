@@ -20,6 +20,10 @@ const NewInvoice = () => {
 
   const [userInputs, setUserInputs] = useState();
 
+  const [productList, seProductList] = useState([
+    { productId: 0, qty: null, price: null },
+  ]);
+
   const [isCustomer, setIsCustomer] = useState(false);
 
   const formRef = useRef();
@@ -62,6 +66,12 @@ const NewInvoice = () => {
       },
       productList: [{ price, productId, qty }],
     };
+  };
+
+  // Handle Adding new product
+
+  const addNewProduct = () => {
+    return;
   };
 
   // * LAYOUT
@@ -207,30 +217,42 @@ const NewInvoice = () => {
                   </p>
                   <span className="h-0.5 flex-1 bg-brown-100"></span>
                 </span>
-                <div className="flex items-center gap-2">
-                  <div className="f-col text-brown gap-1">
-                    <label htmlFor="product" className="font-normal text-sm">
-                      Product
-                    </label>
-                    <select
-                      name="product"
-                      placeholder="Product1"
-                      className=" px-4 py-3  text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
-                    >
-                      <option value="" defaultChecked={true}></option>
 
-                      <option value="product1">product1</option>
-                      <option value="product2">product2</option>
-                      <option value="product3">product3</option>
-                    </select>
+                {/* Product Field */}
+
+                {
+                  <div className="flex items-center gap-2">
+                    <div className="f-col text-brown gap-1">
+                      <label htmlFor="product" className="font-normal text-sm">
+                        Product
+                      </label>
+                      <select
+                        name="product"
+                        placeholder="Product1"
+                        className=" px-4 py-3  text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
+                      >
+                        <option value="" defaultChecked={true}>
+                          product
+                        </option>
+
+                        {userProducts.map((up) => {
+                          return (
+                            <option key={up.id} value={up.name}>
+                              {up.name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <Input type="number" label="Qty." />
+                    <Input type="number" label="Price" />
+                    <Input type="text" label="Total" disabled={true} />
+                    <TrashIcon className="w-16 pt-4 cursor-pointer text-brown hover:text-brown-500" />
                   </div>
-                  <Input type="number" label="Qty." />
-                  <Input type="number" label="Price" />
-                  <Input type="text" label="Total" disabled={true} />
-                  <TrashIcon className="w-16 pt-4 cursor-pointer text-brown hover:text-brown-500" />
-                </div>
+                }
                 <div className="flex gap-2 self-center cursor-pointer hover:text-brown-500">
-                  <PlusIcon className="w-6" /> <span>Add New Product</span>
+                  <PlusIcon className="w-6" onClick={addNewProduct} />{" "}
+                  <span>Add New Product</span>
                 </div>
               </div>
             </form>
