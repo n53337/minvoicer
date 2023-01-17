@@ -13,23 +13,25 @@ const InvoiceRow = ({ data }) => {
 
   return (
     <>
-      {data.map((row) => {
-        return (
-          <tr
-            key={row.id}
-            className="cursor-pointer hover:bg-brown-100 hover:border hover:border-brown"
-            onClick={() => handleInvoiceClick(row.id)}
-          >
-            <td>{`#${row.id}`}</td>
-            <td>{new Date(row.createdAt.seconds * 1000).toDateString()}</td>
-            <td>{row.billTo.name}</td>
-            <td>{`$${row.amount}`}</td>
-            <td className="f-center">
-              <div className="status">{row.status}</div>
-            </td>
-          </tr>
-        );
-      })}
+      {data
+        .map((row) => {
+          return (
+            <tr
+              key={row.id}
+              className="cursor-pointer hover:bg-brown-100 hover:border hover:border-brown"
+              onClick={() => handleInvoiceClick(row.id)}
+            >
+              <td>{`#${row.id}`}</td>
+              <td>{new Date(row.createdAt.seconds * 1000).toDateString()}</td>
+              <td>{row.billTo.name}</td>
+              <td>{`$${row.amount}`}</td>
+              <td className="f-center">
+                <div className="status">{row.status}</div>
+              </td>
+            </tr>
+          );
+        })
+        .sort((a, b) => ("" + a.status).localeCompare(b.status))}
     </>
   );
 };

@@ -6,8 +6,50 @@ import {
 import Input from "../../components/shared/Input";
 import AppSkeleton from "../../components/shared/AppSkeleton";
 import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 
 const NewInvoice = () => {
+  const [userInputs, setUserInputs] = useState();
+
+  const [isCustomer, setIsCustomer] = useState(false);
+
+  const formRef = useRef();
+
+  // User Data
+
+  const [userProfile, setUserProfile] = useState();
+  const [userCustomers, setUserCustomers] = useState();
+  const [userProducts, setUserProducts] = useState();
+
+  console.log(userInputs);
+
+  const handleSave = () => {
+    const dt = {
+      billFrom: {
+        adress,
+        city,
+        zip,
+        country,
+      },
+      billTo: {
+        name,
+        email,
+        adress,
+        city,
+        zip,
+        country,
+      },
+      details: {
+        date,
+        description,
+      },
+      productList: [{ price, productId, qty }],
+    };
+    console.dir(formRef.current[1]);
+  };
+
+  // * LAYOUT
+
   return (
     <AppSkeleton
       title="New Invoice"
@@ -15,13 +57,18 @@ const NewInvoice = () => {
         primary: <button className="btn btn-accent">Discard</button>,
         secondary: (
           <Link>
-            <button className="btn btn-primary">Save Changes</button>
+            <button className="btn btn-primary" onClick={handleSave}>
+              Save Changes
+            </button>
           </Link>
         ),
       }}
     >
       <div className="w-full h-full md:f-center">
-        <form className="flex f-col md:flex-row items-center gap-8 md:gap-16 text-brown">
+        <form
+          className="flex f-col md:flex-row items-center gap-8 md:gap-16 text-brown"
+          ref={formRef}
+        >
           {/* Data */}
           <div className="flex-1 f-col gap-4 ">
             {/* Bill From */}
@@ -57,18 +104,43 @@ const NewInvoice = () => {
             {/* Radio Select */}
 
             <div className="flex gap-4 justify-evenly text-center">
-              <Input type="radio" label="Import from exesting user" />
-              <Input type="radio" label="Custom Informations" />
+              <Input
+                type="radio"
+                label="Import from exesting customer"
+                onChange={() => setIsCustomer(true)}
+                checked={isCustomer}
+              />
+              <Input
+                type="radio"
+                label="Custom Informations"
+                onChange={() => setIsCustomer(false)}
+                checked={!isCustomer}
+              />
             </div>
 
-            <Input type="text" label="Client's Name" />
-            <Input type="email" label="Client's Email" />
-            <Input type="text" label="Street Adress" />
-            <div className="flex gap-2 md:gap-10">
-              <Input type="text" label="City" />
-              <Input type="text" label="Post Code" />
-              <Input type="text" label="Country" />
-            </div>
+            {!isCustomer ? (
+              <>
+                <Input type="text" label="Client's Name" />
+                <Input type="email" label="Client's Email" />
+                <Input type="text" label="Street Adress" />
+                <div className="flex gap-2 md:gap-10">
+                  <Input type="text" label="City" />
+                  <Input type="text" label="Post Code" />
+                  <Input type="text" label="Country" />
+                </div>
+              </>
+            ) : (
+              // Fetch Customers
+              <div className="f-center">
+                <select
+                  name="customers"
+                  id="customers"
+                  className=" text-base p-1 md:p-2 border border-brown rounded-md outline-brown text-brown bg-white"
+                >
+                  <option value="customer1">customer1</option>
+                </select>
+              </div>
+            )}
           </div>
 
           <span className="h-0.5 w-2/3 md:w-0.5 md:h-96 bg-brown-100"></span>
