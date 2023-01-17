@@ -20,6 +20,14 @@ const NewInvoice = () => {
 
   const [userInputs, setUserInputs] = useState();
 
+  const [selectedProduct, setSelectedProduct] = useState([
+    { index: 0, qty: 1 },
+  ]);
+
+  const productsRef = useRef();
+
+  // console.log(selectedProduct);
+
   const [productList, seProductList] = useState([
     { productId: 0, qty: null, price: null },
   ]);
@@ -37,36 +45,37 @@ const NewInvoice = () => {
   // Fetch User Data
 
   useEffect(() => {
+    console.log("rendred");
     fetchUserProfile(state.user.id, setUserProfile);
     fetchCustomers(state.user.id, setUserCustomers);
     fetchProducts(state.user.id, setUserProducts);
   }, []);
 
-  console.log(userProfile, userCustomers, userProducts);
+  // console.log(userProfile, userCustomers, userProducts);
 
-  const handleSave = () => {
-    const dt = {
-      billFrom: {
-        adress,
-        city,
-        zip,
-        country,
-      },
-      billTo: {
-        name,
-        email,
-        adress,
-        city,
-        zip,
-        country,
-      },
-      details: {
-        date,
-        description,
-      },
-      productList: [{ price, productId, qty }],
-    };
-  };
+  // const handleSave = () => {
+  //   const dt = {
+  //     billFrom: {
+  //       adress,
+  //       city,
+  //       zip,
+  //       country,
+  //     },
+  //     billTo: {
+  //       name,
+  //       email,
+  //       adress,
+  //       city,
+  //       zip,
+  //       country,
+  //     },
+  //     details: {
+  //       date,
+  //       description,
+  //     },
+  //     productList: [{ price, productId, qty }],
+  //   };
+  // };
 
   // Handle Adding new product
 
@@ -83,9 +92,7 @@ const NewInvoice = () => {
         primary: <button className="btn btn-accent">Discard</button>,
         secondary: (
           <Link>
-            <button className="btn btn-primary" onClick={handleSave}>
-              Save Changes
-            </button>
+            <button className="btn btn-primary">Save Changes</button>
           </Link>
         ),
       }}
@@ -220,6 +227,8 @@ const NewInvoice = () => {
 
                 {/* Product Field */}
 
+                {/* TODO : Add More Products */}
+
                 {
                   <div className="flex items-center gap-2">
                     <div className="f-col text-brown gap-1">
@@ -227,14 +236,17 @@ const NewInvoice = () => {
                         Product
                       </label>
                       <select
+                        ref={productsRef}
                         name="product"
-                        placeholder="Product1"
                         className=" px-4 py-3  text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
+                        onChange={(e) => {
+                          const currSel = [...selectedProduct];
+                          currSel[0].index = e.target.selectedIndex;
+                          currSel[0].qty = 1;
+                          console.log(currSel);
+                          setSelectedProduct(currSel);
+                        }}
                       >
-                        <option value="" defaultChecked={true}>
-                          product
-                        </option>
-
                         {userProducts.map((up) => {
                           return (
                             <option key={up.id} value={up.name}>
@@ -244,14 +256,39 @@ const NewInvoice = () => {
                         })}
                       </select>
                     </div>
-                    <Input type="number" label="Qty." />
-                    <Input type="number" label="Price" />
-                    <Input type="text" label="Total" disabled={true} />
+                    <Input
+                      type="number"
+                      label="Qty."
+                      min="1"
+                      value={selectedProduct[0].qty}
+                      onChange={(e) => {
+                        const currSel = [...selectedProduct];
+                        currSel[0].qty = +e.target.value;
+                        console.log(currSel);
+                        setSelectedProduct(currSel);
+                      }}
+                    />
+                    <Input
+                      type="number"
+                      label="Price"
+                      disabled={true}
+                      value={userProducts[selectedProduct[0].index].price}
+                    />
+                    <Input
+                      type="text"
+                      label="Total"
+                      disabled={true}
+                      value={
+                        userProducts[selectedProduct[0].index].price *
+                        selectedProduct[0].qty
+                      }
+                    />
                     <TrashIcon className="w-16 pt-4 cursor-pointer text-brown hover:text-brown-500" />
                   </div>
                 }
+
                 <div className="flex gap-2 self-center cursor-pointer hover:text-brown-500">
-                  <PlusIcon className="w-6" onClick={addNewProduct} />{" "}
+                  <PlusIcon className="w-6" onClick={addNewProduct} />
                   <span>Add New Product</span>
                 </div>
               </div>
