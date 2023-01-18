@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Input from "../../components/shared/Input";
 import AppSkeleton from "../../components/shared/AppSkeleton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../Context/GlobalContext";
 import {
@@ -17,6 +17,8 @@ import { LoadingScreen } from "../../components/shared/Loading";
 
 const NewInvoice = () => {
   const { state } = useContext(GlobalContext);
+
+  const navigate = useNavigate();
 
   const [userInputs, setUserInputs] = useState();
 
@@ -100,10 +102,19 @@ const NewInvoice = () => {
     <AppSkeleton
       title="New Invoice"
       utils={{
-        primary: <button className="btn btn-accent">Discard</button>,
+        primary: (
+          <button
+            className="btn btn-accent"
+            onClick={() => navigate("/invoices")}
+          >
+            Discard
+          </button>
+        ),
         secondary: (
           <Link>
-            <button className="btn btn-primary">Save Changes</button>
+            <button className="btn btn-primary" type="submit" form="mainForm">
+              Save Changes
+            </button>
           </Link>
         ),
       }}
@@ -112,8 +123,10 @@ const NewInvoice = () => {
         {userProducts && userCustomers && userProfile ? (
           <div className="w-full h-full md:f-center overflow-auto">
             <form
+              id="mainForm"
               className="flex f-col md:flex-row items-center gap-8 md:gap-16 text-brown"
               ref={formRef}
+              onSubmit={() => console.log("ss")}
             >
               {/* Data */}
               <div className="flex-1 f-col gap-4 ">
