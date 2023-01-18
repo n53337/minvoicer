@@ -22,7 +22,6 @@ const NewInvoice = () => {
 
   const [selectedProduct, setSelectedProduct] = useState([
     { index: 0, qty: 1 },
-    { index: 1, qty: 2 },
   ]);
 
   const productsRef = useRef();
@@ -81,7 +80,18 @@ const NewInvoice = () => {
   // Handle Adding new product
 
   const addNewProduct = () => {
-    return;
+    const currSel = [...selectedProduct];
+    currSel.push({ index: 0, qty: 1 });
+    setSelectedProduct(currSel);
+  };
+
+  const deleteProduct = (index) => {
+    if (selectedProduct.length - 1) {
+      console.log(selectedProduct.length);
+      const currSel = [...selectedProduct];
+      currSel.splice(index, 1);
+      setSelectedProduct(currSel);
+    }
   };
 
   // * LAYOUT
@@ -100,7 +110,7 @@ const NewInvoice = () => {
     >
       <>
         {userProducts && userCustomers && userProfile ? (
-          <div className="w-full h-full md:f-center">
+          <div className="w-full h-full md:f-center overflow-auto">
             <form
               className="flex f-col md:flex-row items-center gap-8 md:gap-16 text-brown"
               ref={formRef}
@@ -250,6 +260,8 @@ const NewInvoice = () => {
                             setSelectedProduct(currSel);
                           }}
                         >
+                          {/* Add Products to selection */}
+
                           {userProducts.map((up) => {
                             return (
                               <option key={up.id} value={up.name}>
@@ -267,7 +279,6 @@ const NewInvoice = () => {
                         onChange={(e) => {
                           const currSel = [...selectedProduct];
                           currSel[i].qty = +e.target.value;
-                          console.log(currSel);
                           setSelectedProduct(currSel);
                         }}
                       />
@@ -286,13 +297,19 @@ const NewInvoice = () => {
                           selectedProduct[i].qty
                         }
                       />
-                      <TrashIcon className="w-16 pt-4 cursor-pointer text-brown hover:text-brown-500" />
+                      <TrashIcon
+                        className="w-16 pt-4 cursor-pointer text-brown hover:text-brown-500"
+                        onClick={() => deleteProduct(i)}
+                      />
                     </div>
                   );
                 })}
 
-                <div className="flex gap-2 self-center cursor-pointer hover:text-brown-500">
-                  <PlusIcon className="w-6" onClick={addNewProduct} />
+                <div
+                  className="flex gap-2 self-center cursor-pointer hover:text-brown-500"
+                  onClick={addNewProduct}
+                >
+                  <PlusIcon className="w-6" />
                   <span>Add New Product</span>
                 </div>
               </div>
