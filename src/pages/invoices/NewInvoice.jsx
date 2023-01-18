@@ -22,6 +22,7 @@ const NewInvoice = () => {
 
   const [selectedProduct, setSelectedProduct] = useState([
     { index: 0, qty: 1 },
+    { index: 1, qty: 2 },
   ]);
 
   const productsRef = useRef();
@@ -225,67 +226,70 @@ const NewInvoice = () => {
                   <span className="h-0.5 flex-1 bg-brown-100"></span>
                 </span>
 
-                {/* Product Field */}
+                {/* Products Field */}
 
-                {/* TODO : Add More Products */}
-
-                {
-                  <div className="flex items-center gap-2">
-                    <div className="f-col text-brown gap-1">
-                      <label htmlFor="product" className="font-normal text-sm">
-                        Product
-                      </label>
-                      <select
-                        ref={productsRef}
-                        name="product"
-                        className=" px-4 py-3  text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
+                {selectedProduct.map((p, i) => {
+                  return (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className="f-col text-brown gap-1">
+                        <label
+                          htmlFor="product"
+                          className="font-normal text-sm"
+                        >
+                          Product
+                        </label>
+                        <select
+                          ref={productsRef}
+                          name="product"
+                          className=" px-4 py-3  text-brown text-sm border-2 border-brown-100 rounded-lg placeholder:text-brown-100"
+                          onChange={(e) => {
+                            const currSel = [...selectedProduct];
+                            currSel[i].index = e.target.selectedIndex;
+                            currSel[i].qty = 1;
+                            console.log(currSel);
+                            setSelectedProduct(currSel);
+                          }}
+                        >
+                          {userProducts.map((up) => {
+                            return (
+                              <option key={up.id} value={up.name}>
+                                {up.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                      <Input
+                        type="number"
+                        label="Qty."
+                        min="1"
+                        value={selectedProduct[i].qty}
                         onChange={(e) => {
                           const currSel = [...selectedProduct];
-                          currSel[0].index = e.target.selectedIndex;
-                          currSel[0].qty = 1;
+                          currSel[i].qty = +e.target.value;
                           console.log(currSel);
                           setSelectedProduct(currSel);
                         }}
-                      >
-                        {userProducts.map((up) => {
-                          return (
-                            <option key={up.id} value={up.name}>
-                              {up.name}
-                            </option>
-                          );
-                        })}
-                      </select>
+                      />
+                      <Input
+                        type="number"
+                        label="Price"
+                        disabled={true}
+                        value={userProducts[selectedProduct[i].index].price}
+                      />
+                      <Input
+                        type="text"
+                        label="Total"
+                        disabled={true}
+                        value={
+                          userProducts[selectedProduct[i].index].price *
+                          selectedProduct[i].qty
+                        }
+                      />
+                      <TrashIcon className="w-16 pt-4 cursor-pointer text-brown hover:text-brown-500" />
                     </div>
-                    <Input
-                      type="number"
-                      label="Qty."
-                      min="1"
-                      value={selectedProduct[0].qty}
-                      onChange={(e) => {
-                        const currSel = [...selectedProduct];
-                        currSel[0].qty = +e.target.value;
-                        console.log(currSel);
-                        setSelectedProduct(currSel);
-                      }}
-                    />
-                    <Input
-                      type="number"
-                      label="Price"
-                      disabled={true}
-                      value={userProducts[selectedProduct[0].index].price}
-                    />
-                    <Input
-                      type="text"
-                      label="Total"
-                      disabled={true}
-                      value={
-                        userProducts[selectedProduct[0].index].price *
-                        selectedProduct[0].qty
-                      }
-                    />
-                    <TrashIcon className="w-16 pt-4 cursor-pointer text-brown hover:text-brown-500" />
-                  </div>
-                }
+                  );
+                })}
 
                 <div className="flex gap-2 self-center cursor-pointer hover:text-brown-500">
                   <PlusIcon className="w-6" onClick={addNewProduct} />
