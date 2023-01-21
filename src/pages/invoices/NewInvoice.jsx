@@ -23,10 +23,16 @@ const NewInvoice = () => {
   const [userInputs, setUserInputs] = useState();
 
   const [selectedProduct, setSelectedProduct] = useState([
-    { index: 0, qty: 1 },
+    { index: 0, qty: 1, id: null },
   ]);
 
+  const [isEmptyField, setIsEmptyField] = useState(false);
+
   const productsRef = useRef();
+
+  const formRef = useRef();
+
+  // console.dir(formRef.current);
 
   // console.log(selectedProduct);
 
@@ -35,8 +41,6 @@ const NewInvoice = () => {
   ]);
 
   const [isCustomer, setIsCustomer] = useState(false);
-
-  const formRef = useRef();
 
   // User Data
 
@@ -47,7 +51,7 @@ const NewInvoice = () => {
   // Fetch User Data
 
   useEffect(() => {
-    console.log("rendred");
+    // console.log("rendred");
     fetchUserProfile(state.user.id, setUserProfile);
     fetchCustomers(state.user.id, setUserCustomers);
     fetchProducts(state.user.id, setUserProducts);
@@ -55,35 +59,11 @@ const NewInvoice = () => {
 
   // console.log(userProfile, userCustomers, userProducts);
 
-  // const handleSave = () => {
-  //   const dt = {
-  //     billFrom: {
-  //       adress,
-  //       city,
-  //       zip,
-  //       country,
-  //     },
-  //     billTo: {
-  //       name,
-  //       email,
-  //       adress,
-  //       city,
-  //       zip,
-  //       country,
-  //     },
-  //     details: {
-  //       date,
-  //       description,
-  //     },
-  //     productList: [{ price, productId, qty }],
-  //   };
-  // };
-
   // Handle Adding new product
 
   const addNewProduct = () => {
     const currSel = [...selectedProduct];
-    currSel.push({ index: 0, qty: 1 });
+    currSel.push({ index: 0, qty: 1, id: null });
     setSelectedProduct(currSel);
   };
 
@@ -94,6 +74,37 @@ const NewInvoice = () => {
       currSel.splice(index, 1);
       setSelectedProduct(currSel);
     }
+  };
+
+  const handleSubmit = () => {
+    console.log(formRef.current[6].value);
+    const formula = {
+      billFrom: {
+        adress: formRef.current[0].value,
+        city: formRef.current[1].value,
+        zip: formRef.current[2].value,
+        country: formRef.current[3].value,
+      },
+      billTo: {
+        name: formRef.current[6].value,
+        email: formRef.current[7].value,
+        adress: formRef.current[8].value,
+        city: formRef.current[9].value,
+        zip: formRef.current[10].value,
+        country: formRef.current[11].value,
+      },
+      details: {
+        date: formRef.current[12].value,
+        description: formRef.current[13].value,
+      },
+      productList: [...selectedProduct],
+    };
+
+    for (let x of Object.entries(formula)) {
+      console.log(x);
+    }
+
+    // console.log(formula);
   };
 
   // * LAYOUT
@@ -112,7 +123,7 @@ const NewInvoice = () => {
         ),
         secondary: (
           <Link>
-            <button className="btn btn-primary" type="submit" form="mainForm">
+            <button className="btn btn-primary" onClick={handleSubmit}>
               Save Changes
             </button>
           </Link>
@@ -123,10 +134,8 @@ const NewInvoice = () => {
         {userProducts && userCustomers && userProfile ? (
           <div className="w-full h-full md:f-center overflow-auto">
             <form
-              id="mainForm"
               className="flex f-col md:flex-row items-center gap-8 md:gap-16 text-brown"
               ref={formRef}
-              onSubmit={() => console.log("ss")}
             >
               {/* Data */}
               <div className="flex-1 f-col gap-4 ">
@@ -269,6 +278,7 @@ const NewInvoice = () => {
                             const currSel = [...selectedProduct];
                             currSel[i].index = e.target.selectedIndex;
                             currSel[i].qty = 1;
+                            currSel[i].id = userProducts[i].id;
                             console.log(currSel);
                             setSelectedProduct(currSel);
                           }}
